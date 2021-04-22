@@ -2,26 +2,26 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Aunix</title>
-    <link>https://example.com/categories/</link>
+    <link>https://skylaF.github.io/categories/</link>
     <description>Recent content in Categories on Aunix</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zn-Hans</language>
-    <lastBuildDate>Thu, 22 Apr 2021 18:00:27 +0800</lastBuildDate><atom:link href="https://example.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 22 Apr 2021 18:00:27 +0800</lastBuildDate><atom:link href="https://skylaF.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>小问题</title>
-      <link>https://example.com/categories/%E5%B0%8F%E9%97%AE%E9%A2%98/</link>
+      <link>https://skylaF.github.io/categories/%E5%B0%8F%E9%97%AE%E9%A2%98/</link>
       <pubDate>Thu, 22 Apr 2021 18:00:27 +0800</pubDate>
       
-      <guid>https://example.com/categories/%E5%B0%8F%E9%97%AE%E9%A2%98/</guid>
+      <guid>https://skylaF.github.io/categories/%E5%B0%8F%E9%97%AE%E9%A2%98/</guid>
       <description></description>
     </item>
     
     <item>
       <title>test</title>
-      <link>https://example.com/categories/test/</link>
+      <link>https://skylaF.github.io/categories/test/</link>
       <pubDate>Wed, 19 Aug 2015 20:29:37 -0700</pubDate>
       
-      <guid>https://example.com/categories/test/</guid>
+      <guid>https://skylaF.github.io/categories/test/</guid>
       <description></description>
     </item>
     

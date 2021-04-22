@@ -2,35 +2,35 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Aunix</title>
-    <link>https://example.com/</link>
+    <link>https://skylaF.github.io/</link>
     <description>Recent content on Aunix</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zn-Hans</language>
-    <lastBuildDate>Thu, 22 Apr 2021 18:00:27 +0800</lastBuildDate><atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 22 Apr 2021 18:00:27 +0800</lastBuildDate><atom:link href="https://skylaF.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>如何建立博客</title>
-      <link>https://example.com/blog/2021-04/%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2/</link>
+      <link>https://skylaF.github.io/blog/2021-04/%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2/</link>
       <pubDate>Thu, 22 Apr 2021 18:00:27 +0800</pubDate>
       
-      <guid>https://example.com/blog/2021-04/%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2/</guid>
+      <guid>https://skylaF.github.io/blog/2021-04/%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2/</guid>
       <description>使用hugo建立博客 正常操作 下载hugo（这个官网有相关教程） 使用以下命令建立本地site目录 hugo new site siteName 下载主题themes,建议使用以下三个主题 git clone https://github.com/orianna-zzo/AllinOne.git themes/AllinOne git clone https://github.com/CaiJimmy/hugo-theme-stack/ themes/hugo-theme-stack git clone https://github.com/olOwOlo/hugo-theme-even themes/even 直接复制主题目录下的config.toml或config.yaml文件到siteName目录下，根据主题的描述自行更改配置变量 使用以下命令建立你文章文档（md格式文件），生成的文件就在conten目录下，一般可以在content目录</description>
     </item>
     
     <item>
       <title>Test</title>
-      <link>https://example.com/blog/2021-04/test/</link>
+      <link>https://skylaF.github.io/blog/2021-04/test/</link>
       <pubDate>Thu, 22 Apr 2021 17:38:52 +0800</pubDate>
       
-      <guid>https://example.com/blog/2021-04/test/</guid>
+      <guid>https://skylaF.github.io/blog/2021-04/test/</guid>
       <description>智能优化算法 这不就好了</description>
     </item>
     
     <item>
       <title>Moment Test</title>
-      <link>https://example.com/moment/test/</link>
+      <link>https://skylaF.github.io/moment/test/</link>
       <pubDate>Wed, 19 Aug 2015 20:29:37 -0700</pubDate>
       
-      <guid>https://example.com/moment/test/</guid>
+      <guid>https://skylaF.github.io/moment/test/</guid>
       <description>The Hitchhiker&amp;rsquo;s Guide to the Galaxy is a comedy science fiction series created by Douglas Adams. Originally a radio comedy broadcast on BBC Radio 4 in 1978, it was later adapted to other formats, and over several years it gradually became an international multi-media phenomenon. Adaptations have included stage shows, a &amp;ldquo;trilogy&amp;rdquo; of five books published between 1979 and 1992, a sixth novel penned by Eoin Colfer in 2009, a 1981 TV series, a 1984 computer game, and three series of three-part comic book adaptations of the first three novels published by DC Comics between 1993 and 1996. There were also two series of towels, produced by Beer-Davies, that are considered by some fans to be an &amp;ldquo;official version&amp;rdquo; of The Hitchhiker&amp;rsquo;s Guide to the Galaxy, as they include text from the first novel.
 Movie A Hollywood-funded film version, produced and filmed in the UK, was released in April 2005, and radio adaptations of the third, fourth, and fifth novels were broadcast from 2004 to 2005. Adams did many of these adaptations, including the novels, the TV series, the computer game, and the earliest drafts of the Hollywood film’s screenplay, and some of the stage shows introduced new material written by Adams.</description>
     </item>

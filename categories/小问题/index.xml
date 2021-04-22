@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>小问题 on Aunix</title>
-    <link>https://example.com/categories/%E5%B0%8F%E9%97%AE%E9%A2%98/</link>
+    <link>https://skylaF.github.io/categories/%E5%B0%8F%E9%97%AE%E9%A2%98/</link>
     <description>Recent content in 小问题 on Aunix</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zn-Hans</language>
-    <lastBuildDate>Thu, 22 Apr 2021 18:00:27 +0800</lastBuildDate><atom:link href="https://example.com/categories/%E5%B0%8F%E9%97%AE%E9%A2%98/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 22 Apr 2021 18:00:27 +0800</lastBuildDate><atom:link href="https://skylaF.github.io/categories/%E5%B0%8F%E9%97%AE%E9%A2%98/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>如何建立博客</title>
-      <link>https://example.com/blog/2021-04/%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2/</link>
+      <link>https://skylaF.github.io/blog/2021-04/%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2/</link>
       <pubDate>Thu, 22 Apr 2021 18:00:27 +0800</pubDate>
       
-      <guid>https://example.com/blog/2021-04/%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2/</guid>
+      <guid>https://skylaF.github.io/blog/2021-04/%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2/</guid>
       <description>使用hugo建立博客 正常操作 下载hugo（这个官网有相关教程） 使用以下命令建立本地site目录 hugo new site siteName 下载主题themes,建议使用以下三个主题 git clone https://github.com/orianna-zzo/AllinOne.git themes/AllinOne git clone https://github.com/CaiJimmy/hugo-theme-stack/ themes/hugo-theme-stack git clone https://github.com/olOwOlo/hugo-theme-even themes/even 直接复制主题目录下的config.toml或config.yaml文件到siteName目录下，根据主题的描述自行更改配置变量 使用以下命令建立你文章文档（md格式文件），生成的文件就在conten目录下，一般可以在content目录</description>
     </item>
     
