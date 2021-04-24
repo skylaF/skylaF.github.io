@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>基本概念 on Aunix</title>
+    <link>https://skylaF.github.io/categories/%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/</link>
+    <description>Recent content in 基本概念 on Aunix</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zn-Hans</language>
+    <lastBuildDate>Fri, 23 Apr 2021 11:02:32 +0800</lastBuildDate><atom:link href="https://skylaF.github.io/categories/%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>计网之基本概念</title>
+      <link>https://skylaF.github.io/blog/2021-04/%E8%AE%A1%E7%BD%91%E4%B9%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/</link>
+      <pubDate>Fri, 23 Apr 2021 11:02:32 +0800</pubDate>
+      
+      <guid>https://skylaF.github.io/blog/2021-04/%E8%AE%A1%E7%BD%91%E4%B9%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/</guid>
+      <description>记录计算机网络的一些基本概念</description>
+    </item>
+    
+  </channel>
+</rss>

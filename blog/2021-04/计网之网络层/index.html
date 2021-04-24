@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="zn-Hans">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1" />
+  <meta name="author" content="Aunix">
+  <meta name="description" content="从IP开始，到ARP、ICMP以及路由选择协议">
+  
+  <meta property="og:title" content="计网之网络层" />
+<meta property="og:description" content="从IP开始，到ARP、ICMP以及路由选择协议" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://skylaF.github.io/blog/2021-04/%E8%AE%A1%E7%BD%91%E4%B9%8B%E7%BD%91%E7%BB%9C%E5%B1%82/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2021-04-23T12:57:56&#43;08:00" />
+<meta property="article:modified_time" content="2021-04-23T12:57:56&#43;08:00" />
+
+
+
+
+  <title>
+  
+       计网之网络层 | Aunix 
+  
+  </title>
+
+  <link rel="canonical" href="https://skylaF.github.io/blog/2021-04/%E8%AE%A1%E7%BD%91%E4%B9%8B%E7%BD%91%E7%BB%9C%E5%B1%82/">
+
+  
+  
+
+  
+  <link href="https://skylaF.github.io/css/vendors-extensions/fontawesome/all.min.css" rel="stylesheet">
+
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono:400,400i,700,700i|Raleway:300,400,500,600">
+  <link href="https://skylaF.github.io/css/font.css" rel="stylesheet"> 
+    
+  
+  <link href="https://skylaF.github.io/css/vendors/bootstrap4/bootstrap.min.css" rel="stylesheet">
+  <link href="https://skylaF.github.io/css/vendors-extensions/mdb/mdb.min.css" rel="stylesheet"> 
+  <link href="https://skylaF.github.io/css/vendors/mdb/style.min.css" rel="stylesheet"> 
+  <link href="https://skylaF.github.io/css/main.css" rel="stylesheet">
+
+
+  
+  <link rel="shortcut icon"
+  
+      href="https://skylaF.github.io/img/icon.png"
+  
+  >
+
+
+  
+  
+
+  <style type="text/css">
+      @media (min-width: 800px) and (max-width: 850px) {
+              .navbar:not(.top-nav-collapse) {
+                  background: #1C2331!important;
+              }
+          }
+  </style>
+
+
+  
+    
+    <link rel="stylesheet" href="https://skylaF.github.io/js/vendors/katex/katex.min.css">
+  
+  
+
+  
+    
+    <link rel="stylesheet" href="https://skylaF.github.io/css/vendors/highlight/github-gist.css">
+  
+
+</head>
+
+  <body class="bg-light" data-spy="scroll" data-target="#page-scrollspy" data-offset="90">
+  
+    
+    
+
+    
+      
+
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+    <div class="container">
+
+      
+      <a class="navbar-brand" href="https://skylaF.github.io">
+          
+        <img class="avatar" src="https://skylaF.github.io/img/icon.png" style="width: 40px!important;height: auto;"  class="d-inline-block align-top" alt="" >
+        
+        <strong> Aunix</strong>
+      </a>
+
+      
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        
+        <ul class="navbar-nav mr-auto ">
+          <li class="nav-item ">
+            <a class="nav-link" href="https://skylaF.github.io">Home</a>
+          </li>
+             
+            <li class="nav-item ">
+              <a class="nav-link" href="https://skylaF.github.io/blog/" >Blog  </a>
+            </li>
+          
+             
+            <li class="nav-item ">
+              <a class="nav-link" href="https://skylaF.github.io/moment/" >Moment  </a>
+            </li>
+          
+             
+            <li class="nav-item ">
+              <a class="nav-link" href="https://skylaF.github.io/about/" >About  </a>
+            </li>
+          
+          
+        </ul>
+
+      </div>
+
+    </div>
+  </nav>
+  
+ 
+      
+ 
+
+
+
+
+
+
+<div id="site-header" class="carousel slide carousel-fade" data-ride="carousel" style="height: 18rem;" >  
+
+  
+  
+  
+
+  
+  <div class="carousel-inner" role="listbox">
+    
+      
+
+        
+        <div class="carousel-item active">
+          <div class="view" style="background-image: url('https://skylaF.github.io/img/header-slides/raw_1515691746.jpg'); background-repeat: no-repeat; background-size: cover;">
+
+            
+            <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+
+              
+              
+              
+
+            </div>
+            
+
+          </div>
+        </div>
+        
+      
+    
+      
+
+        
+        <div class="carousel-item">
+          <div class="view" style="background-image: url('https://skylaF.github.io/img/header-slides//raw_1515847341.jpg'); background-repeat: no-repeat; background-size: cover;">
+
+            
+            <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+
+            
+
+            </div>
+            
+
+          </div>
+        </div>
+        
+      
+    
+
+  
+  </div>
+  
+
+  
+  <div class="carousel-content text-center white-text wow fadeIn">
+    <div class="row mx-0 headfont mt-3 pt-4">
+      
+      <div class="col-12 col-sm-5 align-middle">
+        <a href="https://skylaF.github.io">
+          
+            <img class="pull-right avatar avatar-md" src="https://skylaF.github.io/img/profile.jpg" alt="" >
+          
+        </a>
+      </div>
+      
+      <div class="col-12 col-sm-7 text-left pl-2">
+        <a href="https://skylaF.github.io">
+          <h1 class="mb-2 h1" style="font-weight: 300;" >
+            <strong>Aunix</strong>
+          </h1>
+        </a>
+        
+
+             
+        <div class="mt-2" style="font-size: 1rem; color: white;">
+            
+              <a href="//github.com/skylaF" target="_blank" rel="noopener"><i class="fab fa-github pr-1" aria-hidden="true"></i></a>    
+            
+            
+
+            
+
+            
+
+            
+
+            
+    
+            
+    
+        
+            
+                <a href="mailto:2904639893@qq.com"><i class="far fa-envelope-open pr-1" aria-hidden="true"></i></a>
+            
+    
+            
+
+            
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  
+  
+  
+
+</div>
+  
+    
+
+    
+  
+  <main class="post-main-wrapper">
+    
+    
+    <div class="row">
+
+      
+
+      
+      <div class="col-md-10">
+      
+
+        
+        <div class="z-depth-1  post-wrapper white-bg single-post">
+
+          <div class="post-header text-center" >
+  <ul class="post-meta li-x">
+    
+      
+        <li><a href="https://skylaF.github.io/categories/%E8%AE%A1%E7%BD%91"><i class="fas fa-folder-open pr-1" aria-hidden="true"></i> 计网 </a></li>
+      
+        <li><a href="https://skylaF.github.io/categories/%E7%BD%91%E7%BB%9C%E5%B1%82"><i class="fas fa-folder-open pr-1" aria-hidden="true"></i> 网络层 </a></li>
+      
+    
+    
+      
+        <li><a href="https://skylaF.github.io/series/%E8%AE%A1%E7%BD%91"><i class="fas fa-bookmark pr-1" aria-hidden="true"></i>计网</a></li>
+      
+    
+  </ul>
+
+  <div class="px-4 post-heading">计网之网络层</div>
+
+  <ul class="post-meta li-x mt-1">
+    
+      <li>Apr 23, 2021</li>
+    
+
+    
+      <li class="middot"></li>
+      <li></li>
+    
+  </ul>
+  
+
+</div>
+
+
+          <div class="post-content markdown">
+            <pre><code>网络层向上只提供简单灵活的、无连接的、尽最大努力交互的数据报服务。
+与IP协议配套使用的还有三个协议：  
+  - 地址解析协议ARP  
+  - 网际控制报文协议ICMP（ping程序就是使用这个协议）  
+  - 网际组管理协议IGMP  
+</code></pre>
+<h2 id="1-ip网际协议">1. IP网际协议</h2>
+<h3 id="11-ip数据报首部格式">1.1. IP数据报首部格式</h3>
+<ul>
+<li>首部长度：20-60字节，固定长度20字节，其他为可选字段</li>
+<li>版本：    4位</li>
+<li>首部长度：4位，单位位32位，最大可以到15个32位字长；</li>
+<li>区分服务：8位，</li>
+<li>总长度：  16位，总长度 = 首部 + 数据长度</li>
+<li>标识：    16位，计数数据报分片个数</li>
+<li>标志：    3位，表示是否还有分片MF，以及是否分片DF（don&rsquo;t Fragment）</li>
+<li>片偏移：  13位，某片在原分组中的相对位置。</li>
+<li>生存时间：8位，TTL，现在是以跳数作为计算单位的。</li>
+<li>协议：    8位，指明该数据报应该上交给哪个协议处理，有ICMP、IGMP、TCP、UDP</li>
+<li>首部检验和：16位，只检验首部而不包含数据部分，一般不用CRC，二是用位与运算和位取反运算进行</li>
+<li>源地址：32</li>
+<li>目的地址：32</li>
+</ul>
+<h3 id="12-ip编址方式">1.2. IP编址方式</h3>
+<pre><code>分类-&gt;子网划分-&gt;无分类
+</code></pre>
+<h4 id="121-分类">1.2.1. 分类</h4>
+<ul>
+<li>由网络号和主机号组成，共32位</li>
+<li>分成五类
+<ul>
+<li>A类：0-127</li>
+<li>B类：128-191</li>
+<li>C类：192-223</li>
+<li>D类：224-239</li>
+<li>E类：240-255</li>
+</ul>
+</li>
+</ul>
+<h4 id="122-子网划分">1.2.2. 子网划分</h4>
+<ul>
+<li>原因：
+<ul>
+<li>IP地址空间利用率低</li>
+<li>两级IP地址不够灵活：如果是子网，划分的工作就由单位内部自己做。</li>
+</ul>
+</li>
+<li>思路：从主机号取用若干位作为子网号，形成{&lt;网络号&gt;,&lt;子网号&gt;,&lt;主机号&gt;}</li>
+<li>子网掩码：使用子网掩码可以确定主机号</li>
+</ul>
+<h4 id="123-无分类编址cidr构造超网sider">1.2.3. 无分类编址CIDR（构造超网/sider/）</h4>
+<ul>
+<li>从三级编址变回无分类两级编址，即{&lt;网络前缀&gt;,&lt;主机号&gt;}</li>
+<li>使用斜线记法，例如128.14.35.2/20，在表示前20位相同的可以组成一个CIDR地址块</li>
+<li>虽然不使用子网了，但是仍然由地址掩码，斜线后面的数字就是地址掩码的位数</li>
+<li>一个CIDR块中有很多地址，形成了路由聚合，即超网</li>
+<li><strong>最长前缀匹配</strong>
+<ul>
+<li>路由器在转发时，可能得到多个匹配结果，那么它只选择具有最长前缀的匹配结果，这就是最长匹配。</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-三个配套协议">2. 三个配套协议</h2>
+<pre><code>ICMP、ARP、IGMP
+</code></pre>
+<h3 id="21-arp地址解析协议">2.1. ARP地址解析协议</h3>
+<ul>
+<li>IP数据报往下需要包裹着MAC硬件地址，形成MAC帧，交给数据链路层，在链路层传送时，IP数据报不需要改动，但是MAC帧的地址会发生变化。</li>
+<li>ARP协议就是用来找IP地址对应的MAC地址，<strong>它还是在网络层使用的</strong></li>
+<li>每个主机都有一个ARP高速缓存cache，里面存放着IP地址与MAC地址的映射表</li>
+<li>查找IP与对应MAC地址时有两种情况
+<ul>
+<li>直接在映射表中找到；</li>
+<li>映射表中没有信息，则本机运行ARP进程，向本局域网广播一个请求分组，对应主机接收到之后单播一个响应分组，发起主机接收后在cache种写入映射。</li>
+</ul>
+</li>
+</ul>
+<h3 id="22-icmp网际控制报文协议">2.2. ICMP网际控制报文协议</h3>
+<ul>
+<li>更有效地转发IP数据报和提高交付成功的机会</li>
+<li>ICMP封装在IP数据报的数据部分，但是不属于高层协议</li>
+<li>分为ICMP差错报告报文和ICMP询问报文
+<ul>
+<li>
+<ol>
+<li>ICMP差错报告报文：</li>
+</ol>
+<ul>
+<li>终点不可达</li>
+<li>时间超过</li>
+<li>参数问题</li>
+<li>改变路由</li>
+</ul>
+</li>
+<li>
+<ol start="2">
+<li>ICMP询问报文：</li>
+</ol>
+<ul>
+<li>回送请求或回答Echo</li>
+<li>时间戳请求或回答</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>ICMP的应用
+<ul>
+<li>PING：使用ICMP的回送请求和回送回答报文，<strong>PING程序直接使用ICMP，而不通过运输层的TCP或UDP</strong></li>
+<li>trackroute：</li>
+</ul>
+</li>
+</ul>
+<h3 id="23-igmp网际组管理协议">2.3. IGMP网际组管理协议</h3>
+<pre><code>使用IP数据报传递报文，用于IP多播，主要是让连接在本地局域网上的多播路由器知道著否有主机参加某个多播组
+</code></pre>
+<ul>
+<li>要加入多播组的成员，向多播路由器发送IGMP报文，路由器收到后利用路由选择协议把成员关系转发给其他多播路由器</li>
+<li>周期性的探询本局域网上的主机，有回应的主机被认为某个组是活跃的，如果没有任何回应就认为这个组已经离开了，然后转发这种关系给其他多播路由器</li>
+</ul>
+<h2 id="3-路由选择协议">3. 路由选择协议</h2>
+<pre><code>内部网关协议IGP：RIP、OSPF
+外部网关协议EGP：BGP
+</code></pre>
+<h3 id="31-内部网关协议-rip封装在udp数据报中">3.1. 内部网关协议-RIP（封装在UDP数据报中）</h3>
+<ul>
+<li>基于跳数的距离向量协议，经过一个路由器就是跳数加一，最多15，16表示不可达。</li>
+<li><strong>特点：</strong>
+<ul>
+<li>仅和相邻的路由器交换信息，交换的是自己的路由表</li>
+<li>按固定时间间隔交换信息</li>
+<li>路由表如下：
+<table>
+<thead>
+<tr>
+<th>目的网络</th>
+<th>距离</th>
+<th>下一跳路由器</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Net1</td>
+<td>3</td>
+<td>R1</td>
+</tr>
+<tr>
+<td>Net2</td>
+<td>4</td>
+<td>R3</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>收到RIP报文之后，把没有的项目加到路由表种中，而存在的项目只更新比原有距离更短的，更新后的路由器都是最短距离。</li>
+<li>缺点：跳数只有15限制了网络的规模，而且网络不流畅时需要较多的时间才能将消息更新到所有路由器。</li>
+</ul>
+</li>
+</ul>
+<h3 id="32-内部网关协议ospf直接使用ip数据报">3.2. 内部网关协议OSPF（直接使用IP数据报）</h3>
+<ul>
+<li>开放最短路径优先，使用Dijkstra算法。</li>
+<li>使用洪泛法，向所有路由器发送信息；所有相邻路由器的链路状态；只有链路发生变化时，才使用洪泛法发送消息</li>
+<li><strong>特点：</strong>
+<ul>
+<li>有负载平衡的能力。</li>
+</ul>
+</li>
+</ul>
+<h3 id="33-外部网关协议bgp使用tcp连接">3.3. 外部网关协议BGP（使用TCP连接）</h3>
+<ul>
+<li>选择可达且比较好的路由，而不是寻找最佳的路由，采用路径向量路由选择协议</li>
+<li>BGP发言人：就是代表这个系统与相邻系统交流的路由器，可以是边缘路由器也可以不是</li>
+<li>四种报文：
+<ul>
+<li>OPEN报文：与另一个BGP发言人建立联系</li>
+<li>UPDATE报文：通告某一路由的信息</li>
+<li>KEEPALIVE报文：周期性证实邻站的连通性</li>
+<li>NOTIFICATION报文：通知检测到的差错</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-路由结构和流程">4. 路由结构和流程</h2>
+<pre><code>路由器任务是转发分组，结构分成两大部分：路由选择和分组转发。
+</code></pre>
+<h3 id="41-路由选择">4.1. 路由选择</h3>
+<ul>
+<li>由路由选择协议构造出路由表，具体看上面第3节</li>
+</ul>
+<h3 id="42-分组转发">4.2. 分组转发</h3>
+<pre><code>由三部分组成：交换结构、一组输入端口、一组输出端口
+</code></pre>
+<ul>
+<li>交换结构：根据转发表对分组进行处理/转发和路由选择是不同的，转发表仅涉及一个路由器，但是路由选择涉及很多路由器。
+<ul>
+<li>通过存储器；</li>
+<li>通过总线；</li>
+<li>通过互联网络</li>
+</ul>
+</li>
+<li>输入输出：分别有物理层、链路层、网络层的处理模块，物理层进行比特的接收。链路层按协议接收传送分组的帧，去掉帧的首部和尾部后，交给网络层处理模块。</li>
+</ul>
+<h2 id="5-ipv6">5. IPv6</h2>
+<pre><code>数据单元PDU称为分组，而不是数据报；32位变为128位；数据报分为基本首部和有效载荷。
+</code></pre>
+<ul>
+<li>首部长度固定为40字节</li>
+<li>增加了分片扩展首部，不需要标识、标志和片偏移</li>
+<li>六种扩展首部：
+<ul>
+<li>逐跳选项；</li>
+<li>路由选择；</li>
+<li>分片；</li>
+<li>鉴别；</li>
+<li>封装安全有效载荷；</li>
+<li>目的站选项</li>
+</ul>
+</li>
+<li>三种基本类型地址：
+<ul>
+<li>单薄：点对点通信</li>
+<li>多播；发送到一组计算机中的每一个</li>
+<li>任播；终点是一组计算机，但是数据报只交付给其中一个，一般是距离最近的</li>
+</ul>
+</li>
+<li>冒号十六进制记法：每16为16进制值表示，间隔不再是“.”而是“:”，而且允许省略0，叫做零压缩</li>
+<li>从IPv4过渡到IPv6
+<ul>
+<li>双协议栈，同一台主机用IPv4/IPv6</li>
+<li>隧道技术：将IPv6数据报要封装在IPv4中，成为IPv4的数据部分，只需要在协议字段部分表明协议是IPv6就可以让路由器知道转成IPv6</li>
+</ul>
+</li>
+</ul>
+<h3 id="51-多播路由选择协议">5.1. 多播路由选择协议</h3>
+<pre><code>转发多播数据报时使用以下三种方法
+</code></pre>
+<ul>
+<li>洪泛与剪除</li>
+<li>隧道技术</li>
+<li>基于核心的发现技术</li>
+</ul>
+<h2 id="6-其他">6. 其他</h2>
+<ul>
+<li>网络地址转换NAT<br>
+专用网内部的主机使用本地 IP 地址又想和互联网上的主机通信时，可以使用 NAT 来将本地 IP 转换为全球 IP。
+主要是在路由器上安装NAT软件，一个NAT路由器可以有多个IP地址，所以拥有 n 个全球 IP 地址的专用网内最多只可以同时有 n 台主机接入互联网。
+通过NAT路由器的通信必须由专用网的主机发起，因为NAT路由器收到外网发起的通信也不知道要发给哪个主机。
+<ul>
+<li><strong>现在常用的 NAT 转换表把传输层的端口号也用上了，使得多个专用网内部的主机共用一个全球 IP 地址。使用端口号的 NAT 也叫做网络地址与端口转换 NAPT</strong><br>
+专用网内的主机发起时带上端口号，然后NAPT将其转换成一个公网IP以及一个端口，所以收到外网的数据报时根据不同的端口号就能找到正确的目的主机。</li>
+</ul>
+</li>
+<li>多协议标记交换MPLS
+在MPLS的上层可以使用多种协议，MPLS利用面向连接技术，使每个分组携带一个叫做标记的整数，交换机读取分组的标记，用标记值来加锁分组转发表，<strong>比路由表来转发分组要快得多</strong></li>
+</ul>
+
+          </div>
+
+          
+          <div class="row">
+            <div class="col-md-8">
+            
+            </div>
+            
+          </div>
+          
+
+          
+          <div class="row pt-3">
+            <div class="col-md-6">
+              
+                <a href=https://skylaF.github.io/blog/2021-04/%E8%AE%A1%E7%BD%91%E4%B9%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/ class="post-meta">
+                  <div class="pt-2 pb-5 d-flex">
+                    <i class="fas fa-angle-left text-grey font-weight-bold mr-2 active-color"></i>
+                    <span>计网之基本概念</span>
+                  </div>
+                </a>
+              
+            </div>
+            
+            <div class="col-md-6 text-right" >
+              
+            </div>
+          </div>
+
+          
+
+        </div>
+        
+
+      </div>
+      
+
+      
+	
+	
+	
+	
+		
+		
+		
+	
+
+		
+		<div class="col-md-2 pl-0">
+
+			
+			<div id="page-scrollspy" class="toc-nav">
+				
+				<ul class="nav nav-pills ml-0">
+					
+					<li class="nav-item pb-3 text-center">
+						<span class="font-weight-bold mb-2">- CATALOG - </span>
+					</li>
+
+					
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#1-ip%e7%bd%91%e9%99%85%e5%8d%8f%e8%ae%ae">
+												 1. IP网际协议
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+							
+						
+				 
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#11-ip%e6%95%b0%e6%8d%ae%e6%8a%a5%e9%a6%96%e9%83%a8%e6%a0%bc%e5%bc%8f">
+												 1.1. IP数据报首部格式
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+									</ul>
+								
+							
+						
+				 
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#12-ip%e7%bc%96%e5%9d%80%e6%96%b9%e5%bc%8f">
+												 1.2. IP编址方式
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+									</ul>
+								
+							
+						
+				 
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+									<ul class="nav">
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#121-%e5%88%86%e7%b1%bb">
+												 1.2.1. 分类
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+									</ul>
+								
+									</ul>
+								
+							
+						
+				 
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+									<ul class="nav">
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#122-%e5%ad%90%e7%bd%91%e5%88%92%e5%88%86">
+												 1.2.2. 子网划分
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+									</ul>
+								
+									</ul>
+								
+							
+						
+				 
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+									<ul class="nav">
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#123-%e6%97%a0%e5%88%86%e7%b1%bb%e7%bc%96%e5%9d%80cidr%e6%9e%84%e9%80%a0%e8%b6%85%e7%bd%91sider">
+												 1.2.3. 无分类编址CIDR（构造超网/sider/）
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+									</ul>
+								
+									</ul>
+								
+							
+						
+				 
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#2-%e4%b8%89%e4%b8%aa%e9%85%8d%e5%a5%97%e5%8d%8f%e8%ae%ae">
+												 2. 三个配套协议
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+							
+						
+				 
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#21-arp%e5%9c%b0%e5%9d%80%e8%a7%a3%e6%9e%90%e5%8d%8f%e8%ae%ae">
+												 2.1. ARP地址解析协议
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+									</ul>
+								
+							
+						
+				 
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#22-icmp%e7%bd%91%e9%99%85%e6%8e%a7%e5%88%b6%e6%8a%a5%e6%96%87%e5%8d%8f%e8%ae%ae">
+												 2.2. ICMP网际控制报文协议
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+									</ul>
+								
+							
+						
+				 
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#23-igmp%e7%bd%91%e9%99%85%e7%bb%84%e7%ae%a1%e7%90%86%e5%8d%8f%e8%ae%ae">
+												 2.3. IGMP网际组管理协议
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+									</ul>
+								
+							
+						
+				 
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#3-%e8%b7%af%e7%94%b1%e9%80%89%e6%8b%a9%e5%8d%8f%e8%ae%ae">
+												 3. 路由选择协议
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+							
+						
+				 
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#31-%e5%86%85%e9%83%a8%e7%bd%91%e5%85%b3%e5%8d%8f%e8%ae%ae-rip%e5%b0%81%e8%a3%85%e5%9c%a8udp%e6%95%b0%e6%8d%ae%e6%8a%a5%e4%b8%ad">
+												 3.1. 内部网关协议-RIP（封装在UDP数据报中）
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+									</ul>
+								
+							
+						
+				 
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#32-%e5%86%85%e9%83%a8%e7%bd%91%e5%85%b3%e5%8d%8f%e8%ae%aeospf%e7%9b%b4%e6%8e%a5%e4%bd%bf%e7%94%a8ip%e6%95%b0%e6%8d%ae%e6%8a%a5">
+												 3.2. 内部网关协议OSPF（直接使用IP数据报）
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+									</ul>
+								
+							
+						
+				 
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#33-%e5%a4%96%e9%83%a8%e7%bd%91%e5%85%b3%e5%8d%8f%e8%ae%aebgp%e4%bd%bf%e7%94%a8tcp%e8%bf%9e%e6%8e%a5">
+												 3.3. 外部网关协议BGP（使用TCP连接）
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+									</ul>
+								
+							
+						
+				 
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#4-%e8%b7%af%e7%94%b1%e7%bb%93%e6%9e%84%e5%92%8c%e6%b5%81%e7%a8%8b">
+												 4. 路由结构和流程
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+							
+						
+				 
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#41-%e8%b7%af%e7%94%b1%e9%80%89%e6%8b%a9">
+												 4.1. 路由选择
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+									</ul>
+								
+							
+						
+				 
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#42-%e5%88%86%e7%bb%84%e8%bd%ac%e5%8f%91">
+												 4.2. 分组转发
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+									</ul>
+								
+							
+						
+				 
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#5-ipv6">
+												 5. IPv6
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+							
+						
+				 
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#51-%e5%a4%9a%e6%92%ad%e8%b7%af%e7%94%b1%e9%80%89%e6%8b%a9%e5%8d%8f%e8%ae%ae">
+												 5.1. 多播路由选择协议
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+									</ul>
+								
+							
+						
+				 
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#6-%e5%85%b6%e4%bb%96">
+												 6. 其他
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+							
+						
+				 
+
+				</ul>
+			</div>
+			
+
+		</div>
+		
+	
+
+    </div>
+    
+
+
+  </main>
+  
+
+
+    
+    
+
+<footer class="page-footer text-center font-small mt-4 wow fadeIn">
+
+
+  
+  <div class="pb-2 mt-5 pt-5">
+    
+      <a href="//github.com/skylaF " target="_blank" rel="noopener"><i class="fab fa-github mr-3" aria-hidden="true"></i></a>    
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+    
+        <a href="mailto:2904639893@qq.com"><i class="far fa-envelope-open mr-3" aria-hidden="true"></i></a>
+    
+
+    
+
+    
+
+  </div>
+  
+
+  
+  <div class="copyright py-4">
+    
+    <span>  2021 - 2021 &copy; | Theme <a href='https://github.com/orianna-zzo/AllinOne' target="_blank">AllinOne</a> by <a href='https://github.com/orianna-zzo' target="_blank">Orianna</a>  </span>
+  </div>
+  
+
+</footer>
+
+
+    
+
+
+
+
+
+
+<script type="text/javascript" src="https://skylaF.github.io/js/vendors/jquery/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="https://skylaF.github.io/js/vendors/jquery/jquery.smooth-scroll.min.js"></script>
+
+
+
+<script type="text/javascript" src="https://skylaF.github.io/js/vendors/popper.min.js"></script>
+<script type="text/javascript" src="https://skylaF.github.io/js/vendors/holder.min.js"></script>
+<script type="text/javascript" src="https://skylaF.github.io/js/vendors-extensions/bootstrap4/bootstrap.js" ></script>
+
+<script type="text/javascript" src="https://skylaF.github.io/js/vendors/mdb/mdb.min.js"></script>
+
+<script type="text/javascript" src="https://skylaF.github.io/js/main.js"></script>
+
+
+
+  
+  <script src="https://skylaF.github.io/js/vendors/highlight.pack.js"> </script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+ 
+  <script src="https://skylaF.github.io/js/vendors/katex/katex.min.js"> </script>
+  <script src="https://skylaF.github.io/js/vendors/katex/contrib/auto-render.min.js"></script>
+
+  <script>
+      document.addEventListener("DOMContentLoaded", function () {
+          renderMathInElement(document.body);
+      });
+  </script>
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+  
+  new WOW().init();
+</script>
+
+
+
+
+  </body>
+</html>
