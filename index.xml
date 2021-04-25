@@ -6,7 +6,43 @@
     <description>Recent content on Aunix</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zn-Hans</language>
-    <lastBuildDate>Fri, 23 Apr 2021 15:11:14 +0800</lastBuildDate><atom:link href="https://skylaF.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 25 Apr 2021 19:13:40 +0800</lastBuildDate><atom:link href="https://skylaF.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>应用层</title>
+      <link>https://skylaF.github.io/blog/2021-04/%E5%BA%94%E7%94%A8%E5%B1%82/</link>
+      <pubDate>Sun, 25 Apr 2021 19:13:40 +0800</pubDate>
+      
+      <guid>https://skylaF.github.io/blog/2021-04/%E5%BA%94%E7%94%A8%E5%B1%82/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>关于差距和当前行动不能成就的问题</title>
+      <link>https://skylaF.github.io/moment/thought/%E5%85%B3%E4%BA%8E%E5%B7%AE%E8%B7%9D%E5%92%8C%E5%BD%93%E5%89%8D%E8%A1%8C%E5%8A%A8%E4%B8%8D%E8%83%BD%E6%88%90%E5%B0%B1%E7%9A%84%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Sun, 25 Apr 2021 18:31:48 +0800</pubDate>
+      
+      <guid>https://skylaF.github.io/moment/thought/%E5%85%B3%E4%BA%8E%E5%B7%AE%E8%B7%9D%E5%92%8C%E5%BD%93%E5%89%8D%E8%A1%8C%E5%8A%A8%E4%B8%8D%E8%83%BD%E6%88%90%E5%B0%B1%E7%9A%84%E9%97%AE%E9%A2%98/</guid>
+      <description>1. 关于差距 人与人的差距是客观存在的，就比如我必然是矮于一些女生的，这种物理上的差距是改变不了的，或者说是当前科技改不了的 从第一条就能推断出，脑子，这个人身上最重要也是最大变数的存在，也是存在人与人之间差距的，那么这种情况的落后就直接放弃吧 如果没有第二条的问题，那么，如果你还有向上的渴望，那么你还可以用时间来弥补，因为正常来说，人大部分的时间都是不可控，或者放任自流的，这就导致一个问题，时间上的成长</description>
+    </item>
+    
+    <item>
+      <title>计网之基本问题</title>
+      <link>https://skylaF.github.io/blog/2021-04/%E8%AE%A1%E7%BD%91%E4%B9%8B%E5%9F%BA%E6%9C%AC%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Sun, 25 Apr 2021 17:25:17 +0800</pubDate>
+      
+      <guid>https://skylaF.github.io/blog/2021-04/%E8%AE%A1%E7%BD%91%E4%B9%8B%E5%9F%BA%E6%9C%AC%E9%97%AE%E9%A2%98/</guid>
+      <description>计网常见问题</description>
+    </item>
+    
+    <item>
+      <title>计网之运输层</title>
+      <link>https://skylaF.github.io/blog/2021-04/%E8%AE%A1%E7%BD%91%E4%B9%8B%E8%BF%90%E8%BE%93%E5%B1%82/</link>
+      <pubDate>Sun, 25 Apr 2021 13:05:36 +0800</pubDate>
+      
+      <guid>https://skylaF.github.io/blog/2021-04/%E8%AE%A1%E7%BD%91%E4%B9%8B%E8%BF%90%E8%BE%93%E5%B1%82/</guid>
+      <description>从无连接的UDP到面向连接的TCP，以及更详细的ARQ、停止等待协议</description>
+    </item>
+    
     <item>
       <title>计网之网络层</title>
       <link>https://skylaF.github.io/blog/2021-04/%E8%AE%A1%E7%BD%91%E4%B9%8B%E7%BD%91%E7%BB%9C%E5%B1%82/</link>
