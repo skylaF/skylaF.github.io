@@ -372,7 +372,14 @@ git log</p>
 <li>如何插入本地图片</li>
 </ol>
 <ul>
-<li>目前还没解决。。。感觉就是路径没找对</li>
+<li>已经解决，就是将本地图片转成base64编码
+<ul>
+<li>可以用chrome打开一个新窗口，将图片拖进里面，打开调试窗口，查看source里面的内容，就有这个图片的base64编码串</li>
+<li>用![pictureName][temp]</li>
+<li>在文章的最下面放编码：[temp]:data:image/png;base64,iV&hellip;..</li>
+<li>问题在于这个我还不知道怎么控制图片的位置还有比例，凑合着用吧</li>
+</ul>
+</li>
 </ul>
 
           </div>
