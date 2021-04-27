@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="zn-Hans">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1" />
+  <meta name="author" content="Aunix">
+  <meta name="description" content="操作系统进程的内容，包括进程通信和进程调度">
+  
+  <meta property="og:title" content="操作系统之进程（3）" />
+<meta property="og:description" content="操作系统进程的内容，包括进程通信和进程调度" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://skylaF.github.io/blog/2021-04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B9%8B%E8%BF%9B%E7%A8%8B3/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2021-04-27T16:01:34&#43;08:00" />
+<meta property="article:modified_time" content="2021-04-27T16:01:34&#43;08:00" />
+
+
+
+
+  <title>
+  
+       操作系统之进程（3） | Aunix 
+  
+  </title>
+
+  <link rel="canonical" href="https://skylaF.github.io/blog/2021-04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B9%8B%E8%BF%9B%E7%A8%8B3/">
+
+  
+  
+
+  
+  <link href="https://skylaF.github.io/css/vendors-extensions/fontawesome/all.min.css" rel="stylesheet">
+
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono:400,400i,700,700i|Raleway:300,400,500,600">
+  <link href="https://skylaF.github.io/css/font.css" rel="stylesheet"> 
+    
+  
+  <link href="https://skylaF.github.io/css/vendors/bootstrap4/bootstrap.min.css" rel="stylesheet">
+  <link href="https://skylaF.github.io/css/vendors-extensions/mdb/mdb.min.css" rel="stylesheet"> 
+  <link href="https://skylaF.github.io/css/vendors/mdb/style.min.css" rel="stylesheet"> 
+  <link href="https://skylaF.github.io/css/main.css" rel="stylesheet">
+
+
+  
+  <link rel="shortcut icon"
+  
+      href="https://skylaF.github.io/img/icon.png"
+  
+  >
+
+
+  
+  
+
+  <style type="text/css">
+      @media (min-width: 800px) and (max-width: 850px) {
+              .navbar:not(.top-nav-collapse) {
+                  background: #1C2331!important;
+              }
+          }
+  </style>
+
+
+  
+    
+    <link rel="stylesheet" href="https://skylaF.github.io/js/vendors/katex/katex.min.css">
+  
+  
+
+  
+    
+    <link rel="stylesheet" href="https://skylaF.github.io/css/vendors/highlight/github-gist.css">
+  
+
+</head>
+
+  <body class="bg-light" data-spy="scroll" data-target="#page-scrollspy" data-offset="90">
+  
+    
+    
+
+    
+      
+
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+    <div class="container">
+
+      
+      <a class="navbar-brand" href="https://skylaF.github.io">
+          
+        <img class="avatar" src="https://skylaF.github.io/img/icon.png" style="width: 40px!important;height: auto;"  class="d-inline-block align-top" alt="" >
+        
+        <strong> Aunix</strong>
+      </a>
+
+      
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        
+        <ul class="navbar-nav mr-auto ">
+          <li class="nav-item ">
+            <a class="nav-link" href="https://skylaF.github.io">Home</a>
+          </li>
+             
+            <li class="nav-item ">
+              <a class="nav-link" href="https://skylaF.github.io/blog/" >Blog  </a>
+            </li>
+          
+             
+            <li class="nav-item ">
+              <a class="nav-link" href="https://skylaF.github.io/moment/" >Moment  </a>
+            </li>
+          
+             
+            <li class="nav-item ">
+              <a class="nav-link" href="https://skylaF.github.io/about/" >About  </a>
+            </li>
+          
+          
+        </ul>
+
+      </div>
+
+    </div>
+  </nav>
+  
+ 
+      
+ 
+
+
+
+
+
+
+<div id="site-header" class="carousel slide carousel-fade" data-ride="carousel" style="height: 18rem;" >  
+
+  
+  
+  
+
+  
+  <div class="carousel-inner" role="listbox">
+    
+      
+
+        
+        <div class="carousel-item active">
+          <div class="view" style="background-image: url('https://skylaF.github.io/img/header-slides/raw_1515691746.jpg'); background-repeat: no-repeat; background-size: cover;">
+
+            
+            <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+
+              
+              
+              
+
+            </div>
+            
+
+          </div>
+        </div>
+        
+      
+    
+      
+
+        
+        <div class="carousel-item">
+          <div class="view" style="background-image: url('https://skylaF.github.io/img/header-slides//raw_1515847341.jpg'); background-repeat: no-repeat; background-size: cover;">
+
+            
+            <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+
+            
+
+            </div>
+            
+
+          </div>
+        </div>
+        
+      
+    
+
+  
+  </div>
+  
+
+  
+  <div class="carousel-content text-center white-text wow fadeIn">
+    <div class="row mx-0 headfont mt-3 pt-4">
+      
+      <div class="col-12 col-sm-5 align-middle">
+        <a href="https://skylaF.github.io">
+          
+            <img class="pull-right avatar avatar-md" src="https://skylaF.github.io/img/profile.jpg" alt="" >
+          
+        </a>
+      </div>
+      
+      <div class="col-12 col-sm-7 text-left pl-2">
+        <a href="https://skylaF.github.io">
+          <h1 class="mb-2 h1" style="font-weight: 300;" >
+            <strong>Aunix</strong>
+          </h1>
+        </a>
+        
+
+             
+        <div class="mt-2" style="font-size: 1rem; color: white;">
+            
+              <a href="//github.com/skylaF" target="_blank" rel="noopener"><i class="fab fa-github pr-1" aria-hidden="true"></i></a>    
+            
+            
+
+            
+
+            
+
+            
+
+            
+    
+            
+    
+        
+            
+                <a href="mailto:2904639893@qq.com"><i class="far fa-envelope-open pr-1" aria-hidden="true"></i></a>
+            
+    
+            
+
+            
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  
+  
+  
+
+</div>
+  
+    
+
+    
+  
+  <main class="post-main-wrapper">
+    
+    
+    <div class="row">
+
+      
+
+      
+      <div class="col-md-10">
+      
+
+        
+        <div class="z-depth-1  post-wrapper white-bg single-post">
+
+          <div class="post-header text-center" >
+  <ul class="post-meta li-x">
+    
+      
+        <li><a href="https://skylaF.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><i class="fas fa-folder-open pr-1" aria-hidden="true"></i> 操作系统 </a></li>
+      
+        <li><a href="https://skylaF.github.io/categories/%E8%BF%9B%E7%A8%8B"><i class="fas fa-folder-open pr-1" aria-hidden="true"></i> 进程 </a></li>
+      
+    
+    
+      
+        <li><a href="https://skylaF.github.io/series/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><i class="fas fa-bookmark pr-1" aria-hidden="true"></i>操作系统</a></li>
+      
+    
+  </ul>
+
+  <div class="px-4 post-heading">操作系统之进程（3）</div>
+
+  <ul class="post-meta li-x mt-1">
+    
+      <li>Apr 27, 2021</li>
+    
+
+    
+      <li class="middot"></li>
+      <li></li>
+    
+  </ul>
+  
+
+</div>
+
+
+          <div class="post-content markdown">
+            <h2 id="1-进程通信interprocess-communication">1. 进程通信（InterProcess Communication）</h2>
+<h3 id="11-共享存储系统">1.1. 共享存储系统</h3>
+<ul>
+<li>共享数据结构：进程间公用某些数据结构，比如生产者-消费者中的有界缓冲区</li>
+<li>共享存储区：在内存中划出一块共享存储区域，各进程可对其读或写交换信息</li>
+</ul>
+<h3 id="12-管道pipe">1.2. 管道pipe</h3>
+<pre><code>本质是一个共享文件，pipe文件，以字符流的形式从管道写入或读取大量数据  
+</code></pre>
+<ul>
+<li>只能在父子进程或兄弟进程中使用</li>
+<li>管道为空时读进程阻塞，管道满时写进程阻塞</li>
+</ul>
+<h3 id="13-命名管道fifo">1.3. 命名管道FIFO</h3>
+<ul>
+<li>去除了pipe只能在亲缘进程中使用的限制</li>
+<li>管道有了路径名，存放在磁盘上，任何进程都可以根据这个路径名向这个管道读写数据</li>
+<li>常用在C/S程序中</li>
+</ul>
+<h3 id="14-套接字socket">1.4. 套接字Socket</h3>
+<pre><code>一个套接字就是一个通信标识类型的数据结构，包含了地址，端口号，传输层协议，是为C/S模型设计的。
+</code></pre>
+<ul>
+<li>基于文件型：通信进程都在同一个主机中，一个套接字关联到一个文件，通信双方就地这个文件进行操作，类似于管道。</li>
+<li>基于网络型：类似于TCP连接的方式。</li>
+</ul>
+<h3 id="15-信号量">1.5. 信号量</h3>
+<pre><code>在进程（2）中有详细介绍  
+</code></pre>
+<h3 id="16-信号">1.6. 信号</h3>
+<ul>
+<li>信号是Linux系统中用于进程间互相通信或者操作的一种机制，信号可以在任何时候发给某一进程，而无需知道该进程的状态。</li>
+<li>如果该进程当前并未处于执行状态，则该信号就有内核保存起来，知道该进程回复执行并传递给它为止。</li>
+<li>如果一个信号被进程设置为阻塞，则该信号的传递被延迟，直到其阻塞被取消是才被传递给进程。</li>
+</ul>
+<h3 id="17-消息队列">1.7. 消息队列</h3>
+<pre><code>消息队列是消息的链表,具有特定的格式,存放在内核内存中并由消息队列标识符标识。 
+</code></pre>
+<ul>
+<li>相比于 FIFO，消息队列具有以下优点：
+<ul>
+<li>消息队列可以独立于读写进程存在，从而避免了FIFO中同步管道的打开和关闭时可能产生的困难；</li>
+<li>避免了 FIFO 的同步阻塞问题，不需要进程自己提供同步方法；</li>
+<li>读进程可以根据消息类型有选择地接收消息，而不像 FIFO 那样只能默认地接收。</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-进程调度">2. 进程调度</h2>
+<h3 id="21-进程调度的任务">2.1. 进程调度的任务</h3>
+<ul>
+<li>保存CPU上下文</li>
+<li>按算法调度</li>
+<li>将CPU分配给进程</li>
+</ul>
+<h3 id="22-调度机制">2.2. 调度机制</h3>
+<ul>
+<li>1）排队器：将就绪状态的进程按照一定策略插入就绪队列</li>
+<li>2）分派器：按照算法就绪队列中符合条件的进程选出</li>
+<li>3）上下文切换器：进行两次切换：旧程序上下文保存，分派程序移入；移出分派程序，移入新进程。</li>
+</ul>
+<h3 id="23-调度方式">2.3. 调度方式</h3>
+<ul>
+<li>非抢占式：一旦被分配了CPU，就不会因为时钟中断等被阻塞直至完成。可能引起调度的原因：执行完毕或无法再继续执行，该进程发起I/O请求。</li>
+<li>抢占式：按照某种原则暂停某个进程，分配新进程
+<ul>
+<li>优先权；</li>
+<li>时间片；</li>
+<li>短进程优先</li>
+</ul>
+</li>
+</ul>
+<h3 id="24-调度算法">2.4. 调度算法</h3>
+<ul>
+<li>时间片轮转调度
+<ul>
+<li>按照FCFS算法排成队列，确定时间片</li>
+<li>时间片完了之后：若是进程还没完成就将进程排入就绪队列的di将进程排入就绪队列的队尾；若是没到时间片就完成了，立即激活调度程序，并启动新的时间片</li>
+</ul>
+</li>
+<li>优先级调度</li>
+<li>多队列调度
+<ul>
+<li>将不同类型和性质的进程分配在不同的就绪队列中，不同的队列采用不同的调度算法</li>
+<li>同个队列中的进程可以设置优先级，不同队列间也可以设置优先级</li>
+</ul>
+</li>
+<li>多级反馈队列
+<ul>
+<li>设置多个就绪队列，第一个队列优先级最高，依次降低，优先级越高的队列时间片设置的越短</li>
+<li>每个队列按照FCFS策略进行调度，在第一个队列未能完成的进程安排到第二队的队尾，依次类推（新进程放在一队队尾）</li>
+<li>仅当第一队空闲时才调度第二队</li>
+</ul>
+</li>
+<li>保证调度
+<ul>
+<li>保证每个进程获得相同的CPU时间1/n</li>
+<li>跟踪每个进程已经执行的处理时间</li>
+<li>计算每个进程应获得的CPU时间</li>
+<li>比较各进程获得处理及时间的比率</li>
+<li>选择比率最小的进程，一直让它运行，直到超过最接近它的进程比率为止</li>
+</ul>
+</li>
+<li>公平分享调度
+<ul>
+<li>分配给每个进程相同的CPU时间</li>
+</ul>
+</li>
+<li>最早截止时间优先EDF<br>
+将最早截止时间的任务排在队首，每次只调度就绪队列中的第一个
+<ul>
+<li>非抢占式：如果正在执行的任务2的最早截止时间晚于后来的任务3，任务3又晚于任务4，那么当任务2执行完之后，就执行任务4，再执行任务3</li>
+<li>抢占式（用于周期性任务）：在上面的例子中，任务3到达之后，会中断任务2而去执行任务3，任务4到达后，会去执行任务4</li>
+</ul>
+</li>
+<li>最低松弛度优先LLF</li>
+</ul>
+<h3 id="25-优先级倒置问题">2.5. 优先级倒置问题</h3>
+<pre><code>假设优先级P1&gt;P2&gt;P3，且P1和P3共享一个临界资源，到达时间为P3&gt;P2&gt;P1；  
+这时由于P2优先级高于P3，所以抢占执行P2，P1抢占P2；  
+但是P1被P3阻塞，所以继续执行P2，执行完之后，P3执行，释放资源，然后才轮到P1，这就是优先级倒置的问题。  
+</code></pre>
+<ul>
+<li>解决方法：
+<ul>
+<li>1）P3在进入临界资源后，就不允许被抢占了</li>
+<li>2）动态继承优先级，在P1要进入临界资源而P3正在使用这个资源时，P3就继承P1的优先级，直到P3退出临界区。</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+
+          
+          <div class="row">
+            <div class="col-md-8">
+            
+            </div>
+            
+          </div>
+          
+
+          
+          <div class="row pt-3">
+            <div class="col-md-6">
+              
+                <a href=https://skylaF.github.io/blog/2021-04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B9%8B%E8%BF%9B%E7%A8%8B2/ class="post-meta">
+                  <div class="pt-2 pb-5 d-flex">
+                    <i class="fas fa-angle-left text-grey font-weight-bold mr-2 active-color"></i>
+                    <span>操作系统之进程（2）</span>
+                  </div>
+                </a>
+              
+            </div>
+            
+            <div class="col-md-6 text-right" >
+              
+            </div>
+          </div>
+
+          
+
+        </div>
+        
+
+      </div>
+      
+
+      
+	
+	
+	
+	
+		
+		
+		
+	
+
+		
+		<div class="col-md-2 pl-0">
+
+			
+			<div id="page-scrollspy" class="toc-nav">
+				
+				<ul class="nav nav-pills ml-0">
+					
+					<li class="nav-item pb-3 text-center">
+						<span class="font-weight-bold mb-2">- CATALOG - </span>
+					</li>
+
+					
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#1-%e8%bf%9b%e7%a8%8b%e9%80%9a%e4%bf%a1interprocess-communication">
+												 1. 进程通信（InterProcess Communication）
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+							
+						
+				 
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#11-%e5%85%b1%e4%ba%ab%e5%ad%98%e5%82%a8%e7%b3%bb%e7%bb%9f">
+												 1.1. 共享存储系统
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+									</ul>
+								
+							
+						
+				 
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#12-%e7%ae%a1%e9%81%93pipe">
+												 1.2. 管道pipe
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+									</ul>
+								
+							
+						
+				 
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#13-%e5%91%bd%e5%90%8d%e7%ae%a1%e9%81%93fifo">
+												 1.3. 命名管道FIFO
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+									</ul>
+								
+							
+						
+				 
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#14-%e5%a5%97%e6%8e%a5%e5%ad%97socket">
+												 1.4. 套接字Socket
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+									</ul>
+								
+							
+						
+				 
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#15-%e4%bf%a1%e5%8f%b7%e9%87%8f">
+												 1.5. 信号量
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+									</ul>
+								
+							
+						
+				 
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#16-%e4%bf%a1%e5%8f%b7">
+												 1.6. 信号
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+									</ul>
+								
+							
+						
+				 
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#17-%e6%b6%88%e6%81%af%e9%98%9f%e5%88%97">
+												 1.7. 消息队列
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+									</ul>
+								
+							
+						
+				 
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#2-%e8%bf%9b%e7%a8%8b%e8%b0%83%e5%ba%a6">
+												 2. 进程调度
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+							
+						
+				 
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#21-%e8%bf%9b%e7%a8%8b%e8%b0%83%e5%ba%a6%e7%9a%84%e4%bb%bb%e5%8a%a1">
+												 2.1. 进程调度的任务
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+									</ul>
+								
+							
+						
+				 
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#22-%e8%b0%83%e5%ba%a6%e6%9c%ba%e5%88%b6">
+												 2.2. 调度机制
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+									</ul>
+								
+							
+						
+				 
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#23-%e8%b0%83%e5%ba%a6%e6%96%b9%e5%bc%8f">
+												 2.3. 调度方式
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+									</ul>
+								
+							
+						
+				 
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#24-%e8%b0%83%e5%ba%a6%e7%ae%97%e6%b3%95">
+												 2.4. 调度算法
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+									</ul>
+								
+							
+						
+				 
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#25-%e4%bc%98%e5%85%88%e7%ba%a7%e5%80%92%e7%bd%ae%e9%97%ae%e9%a2%98">
+												 2.5. 优先级倒置问题
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+									</ul>
+								
+							
+						
+				 
+
+				</ul>
+			</div>
+			
+
+		</div>
+		
+	
+
+    </div>
+    
+
+
+  </main>
+  
+
+
+    
+    
+
+<footer class="page-footer text-center font-small mt-4 wow fadeIn">
+
+
+  
+  <div class="pb-2 mt-5 pt-5">
+    
+      <a href="//github.com/skylaF " target="_blank" rel="noopener"><i class="fab fa-github mr-3" aria-hidden="true"></i></a>    
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+    
+        <a href="mailto:2904639893@qq.com"><i class="far fa-envelope-open mr-3" aria-hidden="true"></i></a>
+    
+
+    
+
+    
+
+  </div>
+  
+
+  
+  <div class="copyright py-4">
+    
+    <span>  2021 - 2021 &copy; | Theme <a href='https://github.com/orianna-zzo/AllinOne' target="_blank">AllinOne</a> by <a href='https://github.com/orianna-zzo' target="_blank">Orianna</a>  </span>
+  </div>
+  
+
+</footer>
+
+
+    
+
+
+
+
+
+
+<script type="text/javascript" src="https://skylaF.github.io/js/vendors/jquery/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="https://skylaF.github.io/js/vendors/jquery/jquery.smooth-scroll.min.js"></script>
+
+
+
+<script type="text/javascript" src="https://skylaF.github.io/js/vendors/popper.min.js"></script>
+<script type="text/javascript" src="https://skylaF.github.io/js/vendors/holder.min.js"></script>
+<script type="text/javascript" src="https://skylaF.github.io/js/vendors-extensions/bootstrap4/bootstrap.js" ></script>
+
+<script type="text/javascript" src="https://skylaF.github.io/js/vendors/mdb/mdb.min.js"></script>
+
+<script type="text/javascript" src="https://skylaF.github.io/js/main.js"></script>
+
+
+
+  
+  <script src="https://skylaF.github.io/js/vendors/highlight.pack.js"> </script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+ 
+  <script src="https://skylaF.github.io/js/vendors/katex/katex.min.js"> </script>
+  <script src="https://skylaF.github.io/js/vendors/katex/contrib/auto-render.min.js"></script>
+
+  <script>
+      document.addEventListener("DOMContentLoaded", function () {
+          renderMathInElement(document.body);
+      });
+  </script>
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+  
+  new WOW().init();
+</script>
+
+
+
+
+  </body>
+</html>

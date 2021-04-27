@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>操作系统 on Aunix</title>
+    <link>https://skylaF.github.io/blog/os/</link>
+    <description>Recent content in 操作系统 on Aunix</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zn-Hans</language>
+    <lastBuildDate>Mon, 26 Apr 2021 18:35:09 +0800</lastBuildDate><atom:link href="https://skylaF.github.io/blog/os/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>操作系统之进程（3）</title>
+      <link>https://skylaF.github.io/blog/2021-04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B9%8B%E8%BF%9B%E7%A8%8B3/</link>
+      <pubDate>Tue, 27 Apr 2021 16:01:34 +0800</pubDate>
+      
+      <guid>https://skylaF.github.io/blog/2021-04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B9%8B%E8%BF%9B%E7%A8%8B3/</guid>
+      <description>操作系统进程的内容，包括进程通信和进程调度</description>
+    </item>
+    
+    <item>
+      <title>操作系统之进程（2）</title>
+      <link>https://skylaF.github.io/blog/2021-04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B9%8B%E8%BF%9B%E7%A8%8B2/</link>
+      <pubDate>Tue, 27 Apr 2021 14:06:33 +0800</pubDate>
+      
+      <guid>https://skylaF.github.io/blog/2021-04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B9%8B%E8%BF%9B%E7%A8%8B2/</guid>
+      <description>操作系统进程的内容，包括进程同步经典例子，生产者消费者，读写者等</description>
+    </item>
+    
+    <item>
+      <title>操作系统之进程（1）</title>
+      <link>https://skylaF.github.io/blog/2021-04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B9%8B%E8%BF%9B%E7%A8%8B1/</link>
+      <pubDate>Mon, 26 Apr 2021 20:23:40 +0800</pubDate>
+      
+      <guid>https://skylaF.github.io/blog/2021-04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B9%8B%E8%BF%9B%E7%A8%8B1/</guid>
+      <description>操作系统进程的内容，包括进程状态转换、进程数据结构、进程同步等</description>
+    </item>
+    
+    <item>
+      <title>操作系统基本概念</title>
+      <link>https://skylaF.github.io/blog/2021-04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/</link>
+      <pubDate>Mon, 26 Apr 2021 18:45:14 +0800</pubDate>
+      
+      <guid>https://skylaF.github.io/blog/2021-04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/</guid>
+      <description>记录计算机操作系统的一些基本概念</description>
+    </item>
+    
+  </channel>
+</rss>

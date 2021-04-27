@@ -313,7 +313,7 @@
 <p>hugo new site siteName</p>
 </blockquote>
 <ul>
-<li>下载主题<a href="https://themes.gohugo.io/">themes</a>,建议使用以下三个主题</li>
+<li>下载主题<a href="https://themes.gohugo.io/">themes</a>，建议使用以下三个主题</li>
 </ul>
 <blockquote>
 <p>git clone <a href="https://github.com/orianna-zzo/AllinOne.git">https://github.com/orianna-zzo/AllinOne.git</a> themes/AllinOne<br>
@@ -322,13 +322,13 @@ git clone <a href="https://github.com/olOwOlo/hugo-theme-even">https://github.co
 </blockquote>
 <ul>
 <li>直接复制主题目录下的config.toml或config.yaml文件到siteName目录下，根据主题的描述自行更改配置变量</li>
-<li>使用以下命令建立你文章文档（md格式文件），生成的文件就在conten目录下，一般可以在content目录下建议对应的文件夹</li>
+<li>使用以下命令建立你文章文档（md格式文件），生成的文件就在content目录下，一般可以在content目录下建立对应的文件夹</li>
 </ul>
 <blockquote>
 <p>hugo new newContent.md</p>
 </blockquote>
 <ul>
-<li>可以使用以下命令热部署你的博客内容</li>
+<li>可以使用以下命令显示你的博客内容</li>
 </ul>
 <blockquote>
 <p>hugo server &ndash;watch</p>
@@ -343,7 +343,7 @@ git clone <a href="https://github.com/olOwOlo/hugo-theme-even">https://github.co
 <p>git init<br>
 git config &ndash;global user.name&quot;yourGithubName&quot;<br>
 git config &ndash;global user.email&quot;youremail@eamil.com&quot;<br>
-git remote add origin <a href="mailto:git@github.com">git@github.com</a>:yourGithubName/yourBlogName.git(复制仓库的链接)<br>
+git remote add origin <a href="mailto:git@github.com">git@github.com</a>:yourGithubName/yourBlogName.git(复制仓库的SSH链接，要用SSH方式，还需要在本机<a href="https://www.jianshu.com/p/717efe8129f0">生成密钥</a>，然后放到GitHub上)<br>
 git remote -v<br>
 git pull origin master<br>
 git add .<br>
@@ -378,6 +378,7 @@ git log</p>
 <li>用![pictureName][temp]</li>
 <li>在文章的最下面放编码：[temp]:data:image/png;base64,iV&hellip;..</li>
 <li>问题在于这个我还不知道怎么控制图片的位置还有比例，凑合着用吧</li>
+<li>我突然想到，可以直接修改hugo生成的静态文件HTML，里面还是img标签来显示图片的</li>
 </ul>
 </li>
 </ul>
