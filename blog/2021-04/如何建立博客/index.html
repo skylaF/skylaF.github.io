@@ -333,6 +333,12 @@ git clone <a href="https://github.com/olOwOlo/hugo-theme-even">https://github.co
 <blockquote>
 <p>hugo server &ndash;watch</p>
 </blockquote>
+<ul>
+<li>写完的内容还需要生成静态文件，一般在public/目录下（pull到GitHub上的也是这个目录下的）</li>
+</ul>
+<blockquote>
+<p>hugo server -D</p>
+</blockquote>
 <h2 id="托管到github或gitee上也就是让别人可以看到你的博客而不需要自己买服务器">托管到github或gitee上（也就是让别人可以看到你的博客而不需要自己买服务器）</h2>
 <ul>
 <li>先学会使用git还有github</li>
@@ -381,6 +387,15 @@ git log</p>
 <li>我突然想到，可以直接修改hugo生成的静态文件HTML，里面还是img标签来显示图片的</li>
 </ul>
 </li>
+</ul>
+<ol start="4">
+<li>再记录一个关于图片的问题</li>
+</ol>
+<ul>
+<li>在首页左边栏RECOMMEND SERIES,每一个小框都可以自定义展示的图片，在data/series.yaml文件中可以定义（用AllinOne主题），但是我定义之后没有任何反应</li>
+<li>我以为是什么问题，就去查看layouts/partials/sidebar-series.html中的代码发现确实是读取series.yaml文件是否有字符来决定是用什么照片的，到此我以为是语法出现了错误</li>
+<li>然后我找到了作者自己博客的GitHub仓库，看了代码发现是一样的语句，我就知道是别的错误了</li>
+<li>我灵光一闪，想到可能是series.yaml文件的字符格式错误了，我将它改成UTF-8，果然可以了</li>
 </ul>
 
           </div>

@@ -214,3 +214,40 @@
 [0427/161017:WARNING:url_request_job_manager.cc(89)] Failed to map: weixin://resourceid/blank
 [0427/165928:WARNING:url_request_job_manager.cc(89)] Failed to map: weixin://resourceid/blank
 [0427/165930:WARNING:spdy_session.cc(2455)] Received HEADERS for invalid stream 1
+[0427/200607:WARNING:url_request_job_manager.cc(89)] Failed to map: weixin://resourceid/blank
+[0427/204435:WARNING:url_request_job_manager.cc(89)] Failed to map: weixin://resourceid/blank
+[0428/093708:WARNING:dns_config_service_win.cc(674)] Failed to read DnsConfig.
+[0428/214836:ERROR:ssl_client_socket_impl.cc(1141)] handshake failed; returned -1, SSL error code 1, net_error -100
+[0428/214836:ERROR:ssl_client_socket_impl.cc(1141)] handshake failed; returned -1, SSL error code 1, net_error -100
+[0428/214838:ERROR:ssl_client_socket_impl.cc(1141)] handshake failed; returned -1, SSL error code 1, net_error -100
+[0428/214838:ERROR:ssl_client_socket_impl.cc(1141)] handshake failed; returned -1, SSL error code 1, net_error -100
+[0428/214838:ERROR:ssl_client_socket_impl.cc(1141)] handshake failed; returned -1, SSL error code 1, net_error -100
+[0428/214838:ERROR:ssl_client_socket_impl.cc(1141)] handshake failed; returned -1, SSL error code 1, net_error -100
+[0428/214838:ERROR:ssl_client_socket_impl.cc(1141)] handshake failed; returned -1, SSL error code 1, net_error -100
+[0428/214838:ERROR:ssl_client_socket_impl.cc(1141)] handshake failed; returned -1, SSL error code 1, net_error -100
+[0428/222156:ERROR:ssl_client_socket_impl.cc(1141)] handshake failed; returned -1, SSL error code 1, net_error -100
+[0428/222156:ERROR:ssl_client_socket_impl.cc(1141)] handshake failed; returned -1, SSL error code 1, net_error -100
+[0428/222215:WARNING:url_request_job_manager.cc(89)] Failed to map: weixin://resourceid/blank
+[0429/163006:WARNING:url_request_job_manager.cc(89)] Failed to map: weixin://resourceid/blank
+[0429/163011:ERROR:ssl_client_socket_impl.cc(1141)] handshake failed; returned -1, SSL error code 1, net_error -100
+[0429/163011:ERROR:ssl_client_socket_impl.cc(1141)] handshake failed; returned -1, SSL error code 1, net_error -103
+[0429/163020:WARNING:url_request_job_manager.cc(89)] Failed to map: weixin://resourceid/blank
+[0429/163138:ERROR:ssl_client_socket_impl.cc(1141)] handshake failed; returned -1, SSL error code 1, net_error -103
+[0429/163139:WARNING:url_request_job_manager.cc(89)] Failed to map: weixin://resourceid/blank
+[0429/170254:WARNING:url_request_job_manager.cc(89)] Failed to map: weixin://resourceid/blank
+[0505/191009:WARNING:dns_config_service_win.cc(674)] Failed to read DnsConfig.
+[0505/191012:WARNING:dns_config_service_win.cc(674)] Failed to read DnsConfig.
+[0505/191015:WARNING:dns_config_service_win.cc(674)] Failed to read DnsConfig.
+[0505/191019:WARNING:dns_config_service_win.cc(674)] Failed to read DnsConfig.
+[0505/191020:WARNING:dns_config_service_win.cc(674)] Failed to read DnsConfig.
+[0505/191021:WARNING:dns_config_service_win.cc(674)] Failed to read DnsConfig.
+[0505/191024:WARNING:dns_config_service_win.cc(674)] Failed to read DnsConfig.
+[0505/191025:WARNING:dns_config_service_win.cc(674)] Failed to read DnsConfig.
+[0505/191027:WARNING:dns_config_service_win.cc(674)] Failed to read DnsConfig.
+[0505/191029:WARNING:dns_config_service_win.cc(674)] Failed to read DnsConfig.
+[0505/191045:WARNING:dns_config_service_win.cc(674)] Failed to read DnsConfig.
+[0505/191048:WARNING:dns_config_service_win.cc(674)] Failed to read DnsConfig.
+[0505/191051:WARNING:dns_config_service_win.cc(674)] Failed to read DnsConfig.
+[0505/192512:WARNING:dns_config_service_win.cc(674)] Failed to read DnsConfig.
+[0506/094205:WARNING:url_request_job_manager.cc(89)] Failed to map: weixin://resourceid/blank
+[0507/174110:WARNING:url_request_job_manager.cc(89)] Failed to map: weixin://resourceid/blank

@@ -7,22 +7,25 @@
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1" />
   <meta name="author" content="Aunix">
-  <meta name="description" content="[Life is. A Fucking Movie.]">
+  <meta name="description" content="操作系统进程的内容，包括死锁和银行家算法">
   
-  <meta property="og:title" content="操作系统" />
-<meta property="og:description" content="[Life is. A Fucking Movie.]" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://skylaF.github.io/series/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" />
+  <meta property="og:title" content="操作系统之进程（4）" />
+<meta property="og:description" content="操作系统进程的内容，包括死锁和银行家算法" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://skylaF.github.io/blog/2021-04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B9%8B%E8%BF%9B%E7%A8%8B4/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2021-04-27T20:19:35&#43;08:00" />
+<meta property="article:modified_time" content="2021-04-27T20:19:35&#43;08:00" />
+
 
 
 
   <title>
   
-       操作系统 | Aunix 
+       操作系统之进程（4） | Aunix 
   
   </title>
 
-  <link rel="canonical" href="https://skylaF.github.io/series/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+  <link rel="canonical" href="https://skylaF.github.io/blog/2021-04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B9%8B%E8%BF%9B%E7%A8%8B4/">
 
   
   
@@ -254,276 +257,298 @@
     
 
     
-<main class="post-main-wrapper px-5">
   
-  <div class="row">
+  <main class="post-main-wrapper">
     
-    <div class="col-md-3">
+    
+    <div class="row">
+
       
+
       
+      <div class="col-md-10">
       
 
-  
-
-  
-
-  
-
-  
-
-  
-
-
-
-
-
-  <hr>
-  
-    <div class="post-meta">
-      <div class="mb-2">
-        <a href="https://skylaF.github.io/categories/">
-          <span class="font-weight-bold text-uppercase post-meta">
-            <i class="fas fa-folder-open pr-1" aria-hidden="true"></i> 
-            Categories
-          </span>
-        </a>
-      </div>
-
-      <div class="li-x post-meta" style="margin-left: -8px;">
         
-          
-          
-            
-            <li class="py-1">
-              <a href="https://skylaF.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F">
-                <span>操作系统 (5)</span>
-              </a>
-            </li>           
-          
-            
-              <li class="middot"></li>
-            
-            <li class="py-1">
-              <a href="https://skylaF.github.io/categories/%E8%AE%A1%E7%BD%91">
-                <span>计网 (5)</span>
-              </a>
-            </li>           
-          
-            
-              <li class="middot"></li>
-            
-            <li class="py-1">
-              <a href="https://skylaF.github.io/categories/%E8%BF%9B%E7%A8%8B">
-                <span>进程 (4)</span>
-              </a>
-            </li>           
-          
-            
-              <li class="middot"></li>
-            
-            <li class="py-1">
-              <a href="https://skylaF.github.io/categories/%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5">
-                <span>基本概念 (2)</span>
-              </a>
-            </li>           
-          
-            
-              <li class="middot"></li>
-            
-            <li class="py-1">
-              <a href="https://skylaF.github.io/categories/%E5%B0%8F%E9%97%AE%E9%A2%98">
-                <span>小问题 (1)</span>
-              </a>
-            </li>           
-          
-            
-              <li class="middot"></li>
-            
-            <li class="py-1">
-              <a href="https://skylaF.github.io/categories/%E5%BA%94%E7%94%A8%E5%B1%82">
-                <span>应用层 (1)</span>
-              </a>
-            </li>           
-          
-            
-              <li class="middot"></li>
-            
-            <li class="py-1">
-              <a href="https://skylaF.github.io/categories/%E7%BD%91%E7%BB%9C%E5%B1%82">
-                <span>网络层 (1)</span>
-              </a>
-            </li>           
-          
-            
-              <li class="middot"></li>
-            
-            <li class="py-1">
-              <a href="https://skylaF.github.io/categories/%E8%AF%BE%E7%A8%8B">
-                <span>课程 (1)</span>
-              </a>
-            </li>           
-          
-            
-              <li class="middot"></li>
-            
-            <li class="py-1">
-              <a href="https://skylaF.github.io/categories/%E8%BF%90%E8%BE%93%E5%B1%82">
-                <span>运输层 (1)</span>
-              </a>
-            </li>           
-          
-            
-              <li class="middot"></li>
-            
-            <li class="py-1">
-              <a href="https://skylaF.github.io/categories/%E9%97%AE%E9%A2%98">
-                <span>问题 (1)</span>
-              </a>
-            </li>           
-          
-        
-      </div>
-    </div>
+        <div class="z-depth-1  post-wrapper white-bg single-post">
 
-    
-  
-
-
-      
-      
-
-
-
-
-
-
-      
-  
-
-  
-
-  
-
-  
-
-  
-
-
-
-
-
-
-
-  <hr>
-  
-    <div class="post-meta">
-      <div class="mb-2">
-        <a href="https://skylaF.github.io/series/">
-          <span class="font-weight-bold text-uppercase post-meta">
-            <i class="fas fa-bookmark pr-1" aria-hidden="true"></i> 
-            Recommend Series
-          </span>
-        </a>
-      </div>
-     
-      <div class="post-meta" >
-        
-          
-          
-            <li class="py-1"><a href="https://skylaF.github.io/series/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span>操作系统 (5)</span></a></li>
-          
-        
-      </div>
+          <div class="post-header text-center" >
+  <ul class="post-meta li-x">
     
       
-    </div>
-  
+        <li><a href="https://skylaF.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><i class="fas fa-folder-open pr-1" aria-hidden="true"></i> 操作系统 </a></li>
+      
+        <li><a href="https://skylaF.github.io/categories/%E8%BF%9B%E7%A8%8B"><i class="fas fa-folder-open pr-1" aria-hidden="true"></i> 进程 </a></li>
+      
+    
+    
+      
+        <li><a href="https://skylaF.github.io/series/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><i class="fas fa-bookmark pr-1" aria-hidden="true"></i>操作系统</a></li>
+      
+    
+  </ul>
 
-  
+  <div class="px-4 post-heading">操作系统之进程（4）</div>
 
-    </div>
+  <ul class="post-meta li-x mt-1">
+    
+      <li>Apr 27, 2021</li>
     
 
     
+      <li class="middot"></li>
+      <li></li>
     
-    <div class="col-md-9 mt-3">
-      <ul>
-        <div class="div-x">
-            <div class='post-heading'>
+  </ul>
   
-      操作系统
-  
+
 </div>
 
+
+          <div class="post-content markdown">
+            <h2 id="1-死锁">1. 死锁</h2>
+<pre><code>一组进程中的每一个进程都在等待仅有组内进程才能引发的事件时，称为死锁
+</code></pre>
+<h3 id="11-死锁原因">1.1. 死锁原因</h3>
+<ul>
+<li>竞争不可抢占资源</li>
+<li>竞争可消耗性资源：例如都要求其他进程发消息给本进程，三个进程都要先接收到消息才给下一个进程发送消息，就可能导致死锁</li>
+<li>进程推进不当</li>
+</ul>
+<h3 id="12-死锁的必要条件">1.2. 死锁的必要条件</h3>
+<ul>
+<li>互斥条件：排他性</li>
+<li>请求和保持条件：至少保持了一个资源，还请求新的资源</li>
+<li>不可抢占条件：获得的资源是不可抢占性的</li>
+<li>循环等待条件：产生死锁时，必然存在一条进程-资源的循环链</li>
+</ul>
+<h3 id="13-处理死锁的方法">1.3. 处理死锁的方法</h3>
+<ul>
+<li>1.3.1. 预防死锁
+<ul>
+<li>1） 破坏“请求和保持”条件
+<ul>
+<li>第一种协议：申请时一次性申请所需的所有资源</li>
+<li>第二种协议：只获得运行初期所需的资源，就可以开始运行</li>
+</ul>
+</li>
+<li>2） 破坏“不可抢占”条件<br>
+当一个保持了某系不可被抢占的进程，提出新的资源请求不能得到满足时，就必须释放已经保持的所有资源。</li>
+<li>3） 破坏“循环等待”条件<br>
+对系统所有资源类型线性排序，规定每个进程必须按序号递增的顺序请求资源，如果想要请求序号低的资源，就必须释放已经保持的高序号的所有资源，这样，一个进程就能一直向前推进。</li>
+</ul>
+</li>
+<li>1.3.2. 避免死锁<br>
+不是事先采取某种措施，而是在资源动态分配过程中，防止系统进入不安全状态
+<ul>
+<li>1） 安全状态：系统按照某种进程推进顺序未每个进程分配资源，如果每个进程都能顺利完成，这个就是安全序列，所以在进行资源分配时，要计算系统是否处在安全序列。</li>
+<li>2） 银行家算法避免死锁<br>
+下面介绍</li>
+</ul>
+</li>
+<li>1.3.3. 检测死锁</li>
+<li>1.3.4. 解除死锁</li>
+</ul>
+<h2 id="2-银行家算法">2. 银行家算法</h2>
+
+          </div>
+
+          
+          <div class="row">
+            <div class="col-md-8">
             
-            
-              <div class="px-2 middot"></div>
-              <div>
-                
-              </div>
+            </div>
             
           </div>
-      
           
-      </ul>
-      <ul>
-        
+
+          
+          <div class="row pt-3">
+            <div class="col-md-6">
+              
+                <a href=https://skylaF.github.io/blog/2021-04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B9%8B%E8%BF%9B%E7%A8%8B3/ class="post-meta">
+                  <div class="pt-2 pb-5 d-flex">
+                    <i class="fas fa-angle-left text-grey font-weight-bold mr-2 active-color"></i>
+                    <span>操作系统之进程（3）</span>
+                  </div>
+                </a>
+              
+            </div>
             
+            <div class="col-md-6 text-right" >
+              
+            </div>
+          </div>
+
+          
+
+        </div>
         
-        
-            
-                <li class="post-item no-bullet">
-                    <span class="date">2021.4</span>
-                </li>
-                
-                    <li class="post-item">
-    
-    <span class="meta"><time datetime='2021-04-27T20:19:35&#43;08:00'>Apr 27, 2021</time></span>
-    
-    <a href="https://skylaF.github.io/blog/2021-04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B9%8B%E8%BF%9B%E7%A8%8B4/"><span>操作系统之进程（4）</span></a>
-</li>
 
-                
-                    <li class="post-item">
-    
-    <span class="meta"><time datetime='2021-04-27T16:01:34&#43;08:00'>Apr 27, 2021</time></span>
-    
-    <a href="https://skylaF.github.io/blog/2021-04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B9%8B%E8%BF%9B%E7%A8%8B3/"><span>操作系统之进程（3）</span></a>
-</li>
+      </div>
+      
 
-                
-                    <li class="post-item">
-    
-    <span class="meta"><time datetime='2021-04-27T14:06:33&#43;08:00'>Apr 27, 2021</time></span>
-    
-    <a href="https://skylaF.github.io/blog/2021-04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B9%8B%E8%BF%9B%E7%A8%8B2/"><span>操作系统之进程（2）</span></a>
-</li>
+      
+	
+	
+	
+	
+		
+		
+		
+	
 
-                
-                    <li class="post-item">
-    
-    <span class="meta"><time datetime='2021-04-26T20:23:40&#43;08:00'>Apr 26, 2021</time></span>
-    
-    <a href="https://skylaF.github.io/blog/2021-04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B9%8B%E8%BF%9B%E7%A8%8B1/"><span>操作系统之进程（1）</span></a>
-</li>
+		
+		<div class="col-md-2 pl-0">
 
-                
-                    <li class="post-item">
-    
-    <span class="meta"><time datetime='2021-04-26T18:45:14&#43;08:00'>Apr 26, 2021</time></span>
-    
-    <a href="https://skylaF.github.io/blog/2021-04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/"><span>操作系统基本概念</span></a>
-</li>
+			
+			<div id="page-scrollspy" class="toc-nav">
+				
+				<ul class="nav nav-pills ml-0">
+					
+					<li class="nav-item pb-3 text-center">
+						<span class="font-weight-bold mb-2">- CATALOG - </span>
+					</li>
 
-                
-            
-        
-      </ul>
+					
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#1-%e6%ad%bb%e9%94%81">
+												 1. 死锁
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+							
+						
+				 
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#11-%e6%ad%bb%e9%94%81%e5%8e%9f%e5%9b%a0">
+												 1.1. 死锁原因
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+									</ul>
+								
+							
+						
+				 
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#12-%e6%ad%bb%e9%94%81%e7%9a%84%e5%bf%85%e8%a6%81%e6%9d%a1%e4%bb%b6">
+												 1.2. 死锁的必要条件
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+									</ul>
+								
+							
+						
+				 
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#13-%e5%a4%84%e7%90%86%e6%ad%bb%e9%94%81%e7%9a%84%e6%96%b9%e6%b3%95">
+												 1.3. 处理死锁的方法
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+									</ul>
+								
+							
+						
+				 
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#2-%e9%93%b6%e8%a1%8c%e5%ae%b6%e7%ae%97%e6%b3%95">
+												 2. 银行家算法
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+							
+						
+				 
+
+				</ul>
+			</div>
+			
+
+		</div>
+		
+	
+
     </div>
     
-    
-  </div>
-</main> 
+
+
+  </main>
+  
+
 
     
     
