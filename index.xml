@@ -6,7 +6,16 @@
     <description>Recent content on Aunix</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zn-Hans</language>
-    <lastBuildDate>Tue, 27 Apr 2021 20:19:35 +0800</lastBuildDate><atom:link href="https://skylaF.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 09 Sep 2021 21:31:51 +0800</lastBuildDate><atom:link href="https://skylaF.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MySQL(1)——“锁”</title>
+      <link>https://skylaF.github.io/blog/2021-09/mysql1%E9%94%81/</link>
+      <pubDate>Thu, 09 Sep 2021 21:31:51 +0800</pubDate>
+      
+      <guid>https://skylaF.github.io/blog/2021-09/mysql1%E9%94%81/</guid>
+      <description>MySQL之锁</description>
+    </item>
+    
     <item>
       <title>操作系统之进程（4）</title>
       <link>https://skylaF.github.io/blog/2021-04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B9%8B%E8%BF%9B%E7%A8%8B4/</link>
