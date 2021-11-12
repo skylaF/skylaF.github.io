@@ -6,7 +6,25 @@
     <description>Recent content on Aunix</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zn-Hans</language>
-    <lastBuildDate>Thu, 09 Sep 2021 21:31:51 +0800</lastBuildDate><atom:link href="https://skylaF.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 12 Nov 2021 22:40:07 +0800</lastBuildDate><atom:link href="https://skylaF.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MySQL的安装（Centos）</title>
+      <link>https://skylaF.github.io/blog/2021-11/mysql%E7%9A%84%E5%AE%89%E8%A3%85centos/</link>
+      <pubDate>Fri, 12 Nov 2021 22:40:07 +0800</pubDate>
+      
+      <guid>https://skylaF.github.io/blog/2021-11/mysql%E7%9A%84%E5%AE%89%E8%A3%85centos/</guid>
+      <description>MySQL在Linux上的安装过程记录</description>
+    </item>
+    
+    <item>
+      <title>MySQL(2)——“MVCC”</title>
+      <link>https://skylaF.github.io/blog/2021-10/mysql2mvcc/</link>
+      <pubDate>Sat, 23 Oct 2021 20:47:24 +0800</pubDate>
+      
+      <guid>https://skylaF.github.io/blog/2021-10/mysql2mvcc/</guid>
+      <description>MySQL之MVCC</description>
+    </item>
+    
     <item>
       <title>MySQL(1)——“锁”</title>
       <link>https://skylaF.github.io/blog/2021-09/mysql1%E9%94%81/</link>

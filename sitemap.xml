@@ -3,21 +3,33 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://skylaF.github.io/</loc>
-    <lastmod>2021-09-09T21:31:51+08:00</lastmod>
+    <lastmod>2021-11-12T22:40:07+08:00</lastmod>
   </url><url>
     <loc>https://skylaF.github.io/categories/</loc>
-    <lastmod>2021-09-09T21:31:51+08:00</lastmod>
+    <lastmod>2021-11-12T22:40:07+08:00</lastmod>
+  </url><url>
+    <loc>https://skylaF.github.io/blog/2021-11/mysql%E7%9A%84%E5%AE%89%E8%A3%85centos/</loc>
+    <lastmod>2021-11-12T22:40:07+08:00</lastmod>
+  </url><url>
+    <loc>https://skylaF.github.io/categories/%E5%B0%8F%E9%97%AE%E9%A2%98/</loc>
+    <lastmod>2021-11-12T22:40:07+08:00</lastmod>
+  </url><url>
+    <loc>https://skylaF.github.io/categories/mvcc/</loc>
+    <lastmod>2021-10-23T20:47:24+08:00</lastmod>
   </url><url>
     <loc>https://skylaF.github.io/series/mysql/</loc>
-    <lastmod>2021-09-09T21:31:51+08:00</lastmod>
+    <lastmod>2021-10-23T20:47:24+08:00</lastmod>
   </url><url>
     <loc>https://skylaF.github.io/categories/mysql/</loc>
-    <lastmod>2021-09-09T21:31:51+08:00</lastmod>
+    <lastmod>2021-10-23T20:47:24+08:00</lastmod>
   </url><url>
-    <loc>https://skylaF.github.io/blog/2021-09/mysql1%E9%94%81/</loc>
-    <lastmod>2021-09-09T21:31:51+08:00</lastmod>
+    <loc>https://skylaF.github.io/blog/2021-10/mysql2mvcc/</loc>
+    <lastmod>2021-10-23T20:47:24+08:00</lastmod>
   </url><url>
     <loc>https://skylaF.github.io/series/</loc>
+    <lastmod>2021-10-23T20:47:24+08:00</lastmod>
+  </url><url>
+    <loc>https://skylaF.github.io/blog/2021-09/mysql1%E9%94%81/</loc>
     <lastmod>2021-09-09T21:31:51+08:00</lastmod>
   </url><url>
     <loc>https://skylaF.github.io/categories/%E9%94%81/</loc>
@@ -105,9 +117,6 @@
     <lastmod>2021-04-22T21:11:02+08:00</lastmod>
   </url><url>
     <loc>https://skylaF.github.io/blog/2021-04/%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2/</loc>
-    <lastmod>2021-04-22T18:00:27+08:00</lastmod>
-  </url><url>
-    <loc>https://skylaF.github.io/categories/%E5%B0%8F%E9%97%AE%E9%A2%98/</loc>
     <lastmod>2021-04-22T18:00:27+08:00</lastmod>
   </url><url>
     <loc>https://skylaF.github.io/blog/2021-04/%E6%99%BA%E8%83%BD%E4%BC%98%E5%8C%96/</loc>

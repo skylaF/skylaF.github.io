@@ -6,7 +6,16 @@
     <description>Recent content in 小问题 on Aunix</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zn-Hans</language>
-    <lastBuildDate>Thu, 22 Apr 2021 18:00:27 +0800</lastBuildDate><atom:link href="https://skylaF.github.io/categories/%E5%B0%8F%E9%97%AE%E9%A2%98/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 12 Nov 2021 22:40:07 +0800</lastBuildDate><atom:link href="https://skylaF.github.io/categories/%E5%B0%8F%E9%97%AE%E9%A2%98/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MySQL的安装（Centos）</title>
+      <link>https://skylaF.github.io/blog/2021-11/mysql%E7%9A%84%E5%AE%89%E8%A3%85centos/</link>
+      <pubDate>Fri, 12 Nov 2021 22:40:07 +0800</pubDate>
+      
+      <guid>https://skylaF.github.io/blog/2021-11/mysql%E7%9A%84%E5%AE%89%E8%A3%85centos/</guid>
+      <description>MySQL在Linux上的安装过程记录</description>
+    </item>
+    
     <item>
       <title>如何建立博客</title>
       <link>https://skylaF.github.io/blog/2021-04/%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2/</link>

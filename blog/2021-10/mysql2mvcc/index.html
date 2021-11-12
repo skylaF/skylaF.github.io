@@ -7,22 +7,25 @@
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1" />
   <meta name="author" content="Aunix">
-  <meta name="description" content="[Life is. A Fucking Movie.]">
+  <meta name="description" content="MySQL之MVCC">
   
-  <meta property="og:title" content="Categories" />
-<meta property="og:description" content="[Life is. A Fucking Movie.]" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://skylaF.github.io/categories/" />
+  <meta property="og:title" content="MySQL(2)——“MVCC”" />
+<meta property="og:description" content="MySQL之MVCC" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://skylaF.github.io/blog/2021-10/mysql2mvcc/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2021-10-23T20:47:24&#43;08:00" />
+<meta property="article:modified_time" content="2021-10-23T20:47:24&#43;08:00" />
+<meta property="og:see_also" content="https://skylaF.github.io/blog/2021-09/mysql1%E9%94%81/" />
 
 
 
   <title>
   
-       Categories | Aunix 
+       MySQL(2)——“MVCC” | Aunix 
   
   </title>
 
-  <link rel="canonical" href="https://skylaF.github.io/categories/">
+  <link rel="canonical" href="https://skylaF.github.io/blog/2021-10/mysql2mvcc/">
 
   
   
@@ -254,179 +257,267 @@
     
 
     
-  <main class="post-main-wrapper px-5">
+  
+  <main class="post-main-wrapper">
+    
     
     <div class="row">
+
       
-      <div class="col-md-3">
-        
-        
-        
 
-
-
-
-
+      
+      <div class="col-md-10">
+      
 
         
-        
+        <div class="z-depth-1  post-wrapper white-bg single-post">
 
+          <div class="post-header text-center" >
+  <ul class="post-meta li-x">
+    
+      
+        <li><a href="https://skylaF.github.io/categories/mysql"><i class="fas fa-folder-open pr-1" aria-hidden="true"></i> MySQL </a></li>
+      
+        <li><a href="https://skylaF.github.io/categories/mvcc"><i class="fas fa-folder-open pr-1" aria-hidden="true"></i> MVCC </a></li>
+      
+    
+    
+      
+        <li><a href="https://skylaF.github.io/series/mysql"><i class="fas fa-bookmark pr-1" aria-hidden="true"></i>MySQL</a></li>
+      
+    
+  </ul>
 
+  <div class="px-4 post-heading">MySQL(2)——“MVCC”</div>
 
+  <ul class="post-meta li-x mt-1">
+    
+      <li>Oct 23, 2021</li>
+    
 
-
-
-        
-
-
-
-
-
-
+    
+      <li class="middot"></li>
+      <li></li>
+    
+  </ul>
   
 
-      </div>
-      
-
-      
-      
-      <div class="col-md-9 mt-3">  
-        <ul>
-          <div class='post-heading'>
-  
-      Categories
-  
 </div>
 
+
+          <div class="post-content markdown">
+            <h2 id="前言">前言</h2>
+<blockquote>
+<ol>
+<li>什么是MVCC？跟MySQL的锁有什么关系</li>
+<li>MVCC在不同的隔离级别中有区别吗？</li>
+<li>MVCC是怎么实现的？</li>
+<li>为什么会有MVCC？</li>
+<li>乐观锁和MVCC的区别？</li>
+<li>SELECT、DELETE、UPDATE时的MVCC是怎么实现的？</li>
+</ol>
+</blockquote>
+<h2 id="1-mvcc">1. MVCC</h2>
+<p>Multi-Version Concurrency Control，即多版本并发控制。主要是为了提高数据库的并发性能，在上一篇的锁中，我们知道，锁虽然能够保证数据的隔离性和一致性，但是同时也会造成事务并发时的一些性能问题，因为多个事务并发可能造成阻塞，MVCC能够解决读-写的并发问题（不能解决写-写问题）。MVCC主要围绕InnoDB来讲，因为MyISAM不支持事务。</p>
+<h3 id="11-一致性非锁定读快照读">1.1. 一致性非锁定读（快照读）</h3>
+<pre><code>因为MVCC是一种一致性非锁定读，所以先讲一下这个一致性非锁定读。  
+</code></pre>
+<ol>
+<li>快照读：读取数据的可见版本，不一定是最新数据，是一种不用加锁的读取方式。MVCC是快照读/一致性非锁定读的一种实现。</li>
+<li>当前读：读取数据的最新版本，需要对数据加锁，属于悲观锁。可以用三种方式显式进行当前读：
+<ol>
+<li>update、insert、delete；</li>
+<li>SELECT &hellip;. FOR UPDATE；</li>
+<li>SELECT &hellip;. IN SHARE MODE;</li>
+</ol>
+</li>
+</ol>
+<h3 id="12-mvcc的实现基础">1.2. MVCC的实现基础</h3>
+<pre><code>基础有三个，分别为隐藏项、undo log、read view   
+</code></pre>
+<ol>
+<li>隐藏项<br>
+在数据行中有三个隐藏字段，db_trx_id、db_roll_pointer、db_row_id。</li>
+</ol>
+<ul>
+<li>db_row_id：行数据的自增id，数据库默认的唯一隐式主键，如果数据没有主键，就以db_row_id产生一个聚簇索引；</li>
+<li>db_roll_pointer：回滚指针，指向这条记录的上一个版本（存储在eollback segment里），</li>
+<li>db_trx_id：事务id，创建这条记录/最后一次修改这条记录的事务id；<br>
+在MVCC中主要用到回滚指针和事务id两个隐藏项。</li>
+</ul>
+
+          </div>
+
+          
+          <div class="row">
+            <div class="col-md-8">
+            
+            </div>
+            
+          </div>
+          
+
+          
+          <div class="row pt-3">
+            <div class="col-md-6">
+              
+                <a href=https://skylaF.github.io/blog/2021-09/mysql1%E9%94%81/ class="post-meta">
+                  <div class="pt-2 pb-5 d-flex">
+                    <i class="fas fa-angle-left text-grey font-weight-bold mr-2 active-color"></i>
+                    <span>MySQL(1)——“锁”</span>
+                  </div>
+                </a>
+              
+            </div>
+            
+            <div class="col-md-6 text-right" >
+              
+            </div>
+          </div>
+
+          
+
+        </div>
         
-            
-        </ul>
-        <ul>
-          
-          
 
-            <li class="post-item">
-              
-              <a href="%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span>操作系统</span></a>
-              
-              
-            </li>
-            
-          
-
-            <li class="post-item">
-              
-              <a href="%E8%AE%A1%E7%BD%91"><span>计网</span></a>
-              
-              
-            </li>
-            
-          
-
-            <li class="post-item">
-              
-              <a href="%E8%BF%9B%E7%A8%8B"><span>进程</span></a>
-              
-              
-            </li>
-            
-          
-
-            <li class="post-item">
-              
-              <a href="mysql"><span>mysql</span></a>
-              
-              
-            </li>
-            
-          
-
-            <li class="post-item">
-              
-              <a href="%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span>基本概念</span></a>
-              
-              
-            </li>
-            
-          
-
-            <li class="post-item">
-              
-              <a href="%E5%B0%8F%E9%97%AE%E9%A2%98"><span>小问题</span></a>
-              
-              
-            </li>
-            
-          
-
-            <li class="post-item">
-              
-              <a href="mvcc"><span>mvcc</span></a>
-              
-              
-            </li>
-            
-          
-
-            <li class="post-item">
-              
-              <a href="%E5%BA%94%E7%94%A8%E5%B1%82"><span>应用层</span></a>
-              
-              
-            </li>
-            
-          
-
-            <li class="post-item">
-              
-              <a href="%E7%BD%91%E7%BB%9C%E5%B1%82"><span>网络层</span></a>
-              
-              
-            </li>
-            
-          
-
-            <li class="post-item">
-              
-              <a href="%E8%AF%BE%E7%A8%8B"><span>课程</span></a>
-              
-              
-            </li>
-            
-          
-
-            <li class="post-item">
-              
-              <a href="%E8%BF%90%E8%BE%93%E5%B1%82"><span>运输层</span></a>
-              
-              
-            </li>
-            
-          
-
-            <li class="post-item">
-              
-              <a href="%E9%94%81"><span>锁</span></a>
-              
-              
-            </li>
-            
-          
-
-            <li class="post-item">
-              
-              <a href="%E9%97%AE%E9%A2%98"><span>问题</span></a>
-              
-              
-            </li>
-            
-          
-        </ul>
       </div>
       
+
       
+	
+	
+	
+	
+		
+		
+		
+	
+
+		
+		<div class="col-md-2 pl-0">
+
+			
+			<div id="page-scrollspy" class="toc-nav">
+				
+				<ul class="nav nav-pills ml-0">
+					
+					<li class="nav-item pb-3 text-center">
+						<span class="font-weight-bold mb-2">- CATALOG - </span>
+					</li>
+
+					
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#%e5%89%8d%e8%a8%80">
+												 前言
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+							
+						
+				 
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#1-mvcc">
+												 1. MVCC
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+							
+						
+				 
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#11-%e4%b8%80%e8%87%b4%e6%80%a7%e9%9d%9e%e9%94%81%e5%ae%9a%e8%af%bb%e5%bf%ab%e7%85%a7%e8%af%bb">
+												 1.1. 一致性非锁定读（快照读）
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+									</ul>
+								
+							
+						
+				 
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#12-mvcc%e7%9a%84%e5%ae%9e%e7%8e%b0%e5%9f%ba%e7%a1%80">
+												 1.2. MVCC的实现基础
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+									</ul>
+								
+							
+						
+				 
+
+				</ul>
+			</div>
+			
+
+		</div>
+		
+	
+
     </div>
+    
+
+
   </main>
+  
+
 
     
     
