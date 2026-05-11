@@ -1,0 +1,235 @@
+{{- $id := .Ordinal -}}
+<div class="dice-game-wrapper" style="margin: 2rem auto; max-width: 500px; padding: 2rem; background: #fff; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+  <h2 style="text-align: center; color: #333; margin-bottom: 1.5rem; font-size: 1.8rem;">🎲 在线投骰子</h2>
+  
+  <div class="settings" style="display: block;">
+    <div class="setting-item" style="display: flex; align-items: center; justify-content: space-between; margin: 1rem 0; font-size: 1.1rem;">
+      <label for="diceCount-{{ $id }}">骰子数量：</label>
+      <select id="diceCount-{{ $id }}" style="padding: 0.5rem 1rem; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem;">
+        <option value="1" selected>1个</option>
+        <option value="2">2个</option>
+        <option value="3">3个</option>
+      </select>
+    </div>
+    
+    <div class="setting-item" style="display: flex; align-items: center; justify-content: space-between; margin: 1rem 0; font-size: 1.1rem;">
+      <label for="playerCount-{{ $id }}">玩家数量：</label>
+      <select id="playerCount-{{ $id }}" style="padding: 0.5rem 1rem; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem;">
+        <option value="2" selected>2人</option>
+        <option value="3">3人</option>
+        <option value="4">4人</option>
+        <option value="5">5人</option>
+        <option value="6">6人</option>
+        <option value="7">7人</option>
+        <option value="8">8人</option>
+        <option value="9">9人</option>
+        <option value="10">10人</option>
+        <option value="11">11人</option>
+        <option value="12">12人</option>
+      </select>
+    </div>
+    
+    <!-- 确定按钮（居中+渐变样式） -->
+    <div style="text-align: center; margin-top: 1.5rem;">
+      <button id="confirmBtn-{{ $id }}" style="padding: 0.8rem 2rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 8px; font-size: 1.1rem; font-weight: bold; cursor: pointer; box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4); transition: all 0.3s ease;">
+        开始游戏
+      </button>
+    </div>
+  </div>
+  
+  <div class="game-area" style="display: none; text-align: center;">
+    <div class="current-player" style="font-size: 1.3rem; margin-bottom: 1.5rem; color: #333;">
+      <span class="player-label">当前玩家：</span>
+      <span id="currentPlayerName-{{ $id }}" class="player-name" style="font-weight: bold; color: #667eea; font-size: 1.4rem;"></span>
+    </div>
+    
+    <div class="dice-container" id="diceContainer-{{ $id }}" style="display: flex; justify-content: center; gap: 1.5rem; margin: 2rem 0; min-height: 100px; align-items: center;"></div>
+    
+    <div class="result" id="result-{{ $id }}" style="font-size: 1.2rem; color: #555; margin-bottom: 1.5rem; min-height: 30px;"></div>
+    
+    <!-- 投掷按钮 + 重新开始按钮（并排居中） -->
+    <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+      <button id="rollBtn-{{ $id }}" style="padding: 0.8rem 2rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 8px; font-size: 1.1rem; font-weight: bold; cursor: pointer; box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4); transition: all 0.3s ease;">
+        🎲 投掷骰子
+      </button>
+      
+      <!-- 新增：重新开始按钮 -->
+      <button id="retryBtn-{{ $id }}" style="padding: 0.8rem 2rem; background: linear-gradient(135deg,  #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 8px; font-size: 1.1rem; font-weight: bold; cursor: pointer; box-shadow: 0 4px 12px rgba(245, 87, 108, 0.4); transition: all 0.3s ease;">
+         重新开始
+      </button>
+    </div>
+    
+    <p class="hint" style="margin-top: 1rem; color: #888; font-size: 0.9rem;">点击按钮或按空格键投掷</p>
+  </div>
+</div>
+
+<style>
+  .dice {
+    width: 80px;
+    height: 80px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .dice svg {
+    width: 100%;
+    height: 100%;
+  }
+  .dice.rolling {
+    animation: roll 0.5s ease-in-out;
+  }
+  @keyframes roll {
+    0% { transform: rotate(0deg) scale(1); }
+    25% { transform: rotate(90deg) scale(1.1); }
+    50% { transform: rotate(180deg) scale(1); }
+    75% { transform: rotate(270deg) scale(1.1); }
+    100% { transform: rotate(360deg) scale(1); }
+  }
+  
+  /* 按钮hover效果 */
+  button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+  }
+  button:active {
+    transform: translateY(0);
+  }
+  
+  /* 暗黑模式适配 */
+  @media (prefers-color-scheme: dark) {
+    .dice-game-wrapper {
+      background: #1e1e1e;
+      color: #fff;
+    }
+    .dice-game-wrapper h2,
+    .dice-game-wrapper .current-player,
+    .dice-game-wrapper .result {
+      color: #eee;
+    }
+    .dice-game-wrapper select {
+      background: #2e2e2e;
+      color: #fff;
+      border-color: #444;
+    }
+    .dice {
+      box-shadow: 0 5px 15px rgba(255,255,255,0.1);
+    }
+    .dice svg rect {
+      fill: #2e2e2e;
+      stroke: #444;
+    }
+    .dice svg circle {
+      fill: #fff;
+    }
+  }
+</style>
+
+<script>
+  (function() {
+    const uniqueID = {{ $id }};
+    const players = ['甲', '乙', '丙', '丁', '戊', '己', '庚', '辛', '壬', '癸', '子', '丑'];
+    let diceCount = 1;
+    let playerCount = 2;
+    let currentPlayerIndex = 0;
+    let isRolling = false;
+
+    // 获取所有元素
+    const diceCountSelect = document.getElementById('diceCount-' + uniqueID);
+    const playerCountSelect = document.getElementById('playerCount-' + uniqueID);
+    const confirmBtn = document.getElementById('confirmBtn-' + uniqueID);
+    const retryBtn = document.getElementById('retryBtn-' + uniqueID);
+    const settingsDiv = confirmBtn.closest('.settings');
+    const gameArea = confirmBtn.closest('.dice-game-wrapper').querySelector('.game-area');
+    const diceContainer = document.getElementById('diceContainer-' + uniqueID);
+    const currentPlayerName = document.getElementById('currentPlayerName-' + uniqueID);
+    const resultDiv = document.getElementById('result-' + uniqueID);
+    const rollBtn = document.getElementById('rollBtn-' + uniqueID);
+
+    const diceSvgs = {
+      1: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="5" width="90" height="90" rx="15" fill="white" stroke="#ddd" stroke-width="2"/><circle cx="50" cy="50" r="12" fill="#333"/></svg>`,
+      2: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="5" width="90" height="90" rx="15" fill="white" stroke="#ddd" stroke-width="2"/><circle cx="25" cy="25" r="12" fill="#333"/><circle cx="75" cy="75" r="12" fill="#333"/></svg>`,
+      3: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="5" width="90" height="90" rx="15" fill="white" stroke="#ddd" stroke-width="2"/><circle cx="25" cy="25" r="12" fill="#333"/><circle cx="50" cy="50" r="12" fill="#333"/><circle cx="75" cy="75" r="12" fill="#333"/></svg>`,
+      4: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="5" width="90" height="90" rx="15" fill="white" stroke="#ddd" stroke-width="2"/><circle cx="25" cy="25" r="12" fill="#333"/><circle cx="75" cy="25" r="12" fill="#333"/><circle cx="25" cy="75" r="12" fill="#333"/><circle cx="75" cy="75" r="12" fill="#333"/></svg>`,
+      5: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="5" width="90" height="90" rx="15" fill="white" stroke="#ddd" stroke-width="2"/><circle cx="25" cy="25" r="12" fill="#333"/><circle cx="75" cy="25" r="12" fill="#333"/><circle cx="50" cy="50" r="12" fill="#333"/><circle cx="25" cy="75" r="12" fill="#333"/><circle cx="75" cy="75" r="12" fill="#333"/></svg>`,
+      6: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="5" width="90" height="90" rx="15" fill="white" stroke="#ddd" stroke-width="2"/><circle cx="25" cy="25" r="12" fill="#333"/><circle cx="75" cy="25" r="12" fill="#333"/><circle cx="25" cy="50" r="12" fill="#333"/><circle cx="75" cy="50" r="12" fill="#333"/><circle cx="25" cy="75" r="12" fill="#333"/><circle cx="75" cy="75" r="12" fill="#333"/></svg>`
+    };
+
+    function createDice(value) {
+      const dice = document.createElement('div');
+      dice.className = 'dice';
+      dice.innerHTML = diceSvgs[value];
+      return dice;
+    }
+
+    function rollDice() {
+      if (isRolling) return;
+      isRolling = true;
+      
+      diceContainer.innerHTML = '';
+      resultDiv.textContent = '';
+      
+      const results = [];
+      for (let i = 0; i < diceCount; i++) {
+        const value = Math.floor(Math.random() * 6) + 1;
+        results.push(value);
+        const dice = createDice(value);
+        dice.classList.add('rolling');
+        diceContainer.appendChild(dice);
+      }
+      
+      setTimeout(() => {
+        const dices = diceContainer.querySelectorAll('.dice');
+        dices.forEach(dice => dice.classList.remove('rolling'));
+        
+        const total = results.reduce((sum, val) => sum + val, 0);
+        resultDiv.textContent = `点数：${results.join(' + ')} = ${total}`;
+        
+        currentPlayerIndex = (currentPlayerIndex + 1) % playerCount;
+        currentPlayerName.textContent = players[currentPlayerIndex];
+        isRolling = false;
+      }, 500);
+    }
+
+    function startGame() {
+      diceCount = parseInt(diceCountSelect.value);
+      playerCount = parseInt(playerCountSelect.value);
+      currentPlayerIndex = 0;
+      
+      settingsDiv.style.display = 'none';
+      gameArea.style.display = 'block';
+      currentPlayerName.textContent = players[currentPlayerIndex];
+      
+      diceContainer.innerHTML = '';
+      resultDiv.textContent = '';
+      for (let i = 0; i < diceCount; i++) {
+        diceContainer.appendChild(createDice(1));
+      }
+    }
+
+    // 新增：重新开始游戏逻辑
+    function restartGame() {
+      gameArea.style.display = 'none';
+      settingsDiv.style.display = 'block';
+      // 重置所有状态
+      currentPlayerIndex = 0;
+      isRolling = false;
+      diceContainer.innerHTML = '';
+      resultDiv.textContent = '';
+    }
+
+    // 绑定事件
+    confirmBtn.addEventListener('click', startGame);
+    rollBtn.addEventListener('click', rollDice);
+    retryBtn.addEventListener('click', restartGame);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.code === 'Space' && gameArea.style.display !== 'none') {
+        e.preventDefault();
+        rollDice();
+      }
+    });
+  })();
+</script>

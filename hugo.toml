@@ -1,0 +1,41 @@
+baseURL = 'https://skylaf.github.io/'
+locale = 'zh'
+title = 'Aunix Page'
+theme = 'dream'
+defaultContentLanguage = 'zh'  # 改成 zh
+[params]
+author = 'Aunix'
+avatar = '/images/avatar.jpg'
+authorLink = '/about'
+
+favicon = '/favicon.ico'
+favicon16x16 = '/favicon.ico'  # 补充这两个，兼容所有浏览器
+favicon32x32 = '/favicon.ico'
+
+headerTitle = "Aunix's Blog"
+
+lightTheme = "emerald"
+darkTheme = "forest"
+
+hasCJKLanguage = true
+motto = "歌未竟，东方白"
+
+showTableOfContents = true
+showSummaryCoverInPost = true
+imageZoomableInPost = true
+showPrevNextPost = true
+# 👇 控制导航栏显示顺序
+reorderNavItems = ["search", "home", "tools", "about", "categories", "tags"]
+
+# 👇 自定义导航项：小工具（多行写法，绝对不会解析错误）
+[params.navItems.home]
+href = "/"
+title = "首页"
+
+[params.navItems.tools]
+href = "/categories/小工具/"
+title = "小工具"
+
+[params.navItems.about]
+href = "/about/"
+title = "关于"

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>小工具 on Aunix Page</title>
+    <link>http://localhost:1313/categories/%E5%B0%8F%E5%B7%A5%E5%85%B7/</link>
+    <description>Recent content in 小工具 on Aunix Page</description>
+    <generator>Hugo</generator>
+    <language>zh</language>
+    <lastBuildDate>Mon, 11 May 2026 00:00:00 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/%E5%B0%8F%E5%B7%A5%E5%85%B7/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>投骰子</title>
+      <link>http://localhost:1313/posts/dice/</link>
+      <pubDate>Mon, 11 May 2026 00:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/posts/dice/</guid>
+      <description>&lt;p&gt;这是一个在线投骰子小工具，支持1-3个骰子和2-12个玩家，点击按钮或按空格键即可投掷。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

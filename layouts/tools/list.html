@@ -1,0 +1,50 @@
+{{ define "main" }}
+<div class="container mx-auto px-4 py-8">
+  <!-- 页面标题和介绍 -->
+  <div class="text-center mb-12">
+    <h1 class="text-4xl font-bold mb-4 text-gray-800 dark:text-gray-200">{{ .Title }}</h1>
+    {{ with .Content }}
+    <div class="prose dark:prose-invert max-w-2xl mx-auto text-gray-600 dark:text-gray-400">
+      {{ . }}
+    </div>
+    {{ end }}
+  </div>
+
+  <!-- 完全复制主题原生瀑布流结构 -->
+  <div class="dream-grid">
+    {{ range .Pages }}
+    <div class="dream-column">
+      <!-- 👇 关键：添加 overflow-hidden + 完整的hover效果 -->
+      <article class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+        {{ with .Params.cover }}
+        <div class="w-full h-48 overflow-hidden">
+          <img src="{{ . }}" alt="{{ $.Title }}" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+        </div>
+        {{ end }}
+        <div class="p-6">
+          <h2 class="text-xl font-bold mb-3">
+            <a href="{{ .RelPermalink }}" class="text-gray-800 dark:text-gray-200 hover:text-blue-500 transition-colors">{{ .Title }}</a>
+          </h2>
+          <div class="text-gray-500 dark:text-gray-400 text-sm mb-4">
+            {{ .Date.Format "2006年01月02日" }}
+          </div>
+          <div class="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">
+            {{ .Summary | plainify | truncate 100 }}
+          </div>
+          <div class="flex justify-between items-center">
+            <a href="{{ .RelPermalink }}" class="text-blue-500 hover:text-blue-600 font-medium">
+              打开工具 →
+            </a>
+            {{ with .ReadingTime }}
+            <span class="text-gray-500 dark:text-gray-400 text-sm">
+              {{ . }}分钟阅读
+            </span>
+            {{ end }}
+          </div>
+        </div>
+      </article>
+    </div>
+    {{ end }}
+  </div>
+</div>
+{{ end }}
