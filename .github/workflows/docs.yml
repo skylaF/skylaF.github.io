@@ -15,16 +15,15 @@ permissions:
 
 concurrency:
   group: "pages"
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v5
         with:
-          submodules: true
           fetch-depth: 0
 
       - name: Setup Hugo
@@ -33,17 +32,19 @@ jobs:
           hugo-version: '0.159.2'
           extended: true
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v6
+      - name: Build site
+        run: |
+          # 先清理旧的 public 文件夹
+          rm -rf public
+          # 生成网站，明确指定输出到 public 文件夹
+          hugo --gc --minify --baseURL "https://skylaf.github.io/" --destination public
+          # 验证 public 文件夹是否存在
+          ls -la public
 
-      - name: Build with Hugo
-        run: hugo --gc --minify --baseURL "https://skylaf.github.io/"
-
-      # ✅ 关键修复：明确指定上传 Hugo 生成的 public 文件夹
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: public  # 这行是修复的核心！
+          path: ./public  # 明确指定相对路径，绝对不会错
 
   deploy:
     environment:
