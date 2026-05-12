@@ -3,7 +3,7 @@ title: "投骰子"
 date: 2026-05-11T00:00:00+08:00
 lastmod: 2026-05-11T00:00:00+08:00
 author: "Aunix"
-cover: "/images/first/dice.png " 
+cover: "/images/first/dice.png" 
 categories:
   - "小工具"
 tags:
